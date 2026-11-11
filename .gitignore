@@ -7,3 +7,4 @@ build/
 # Replica: third-party reference material, never commit
 replica/screens/
 replica/reviews.csv
+dist-test/

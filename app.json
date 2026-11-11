@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "clau-garm",
+    "slug": "clau-garm",
+    "version": "0.0.1",
+    "orientation": "landscape",
+    "userInterfaceStyle": "dark",
+    "android": { "package": "uy.clau.garm" },
+    "platforms": ["android", "ios"]
+  }
+}

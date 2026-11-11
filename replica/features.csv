@@ -1,12 +1,12 @@
 id,feature,area,priority,screens,flows,original,clone,notes
-FT01,Enter departure and destination to build a route,flight plan,must,S05 S06,F01,yes,no,FastFind predictive waypoint entry
+FT01,Enter departure and destination to build a route,flight plan,must,S05 S06,F01,yes,partial,"built: PlanScreen + predictive waypoint field; seed UY airports only, no real data pack"
 FT02,Add and reorder waypoints in a route,flight plan,must,S05,F01,yes,no,
-FT03,Draw the active route on the map,map,must,S03,F01 F02,yes,no,
-FT04,Moving map with own-ship position from GPS,map,must,S03,F02,yes,no,core in-flight view; needs device GPS
-FT05,Pan and zoom the map,map,must,S03,F02,yes,no,
+FT03,Draw the active route on the map,map,must,S03,F01 F02,yes,partial,built: schematic RouteView; MapLibre moving map pending
+FT04,Moving map with own-ship position from GPS,map,must,S03,F02,yes,partial,own-ship wiring present; real device GPS + moving map pending
+FT05,Pan and zoom the map,map,must,S03,F02,yes,no,needs the real MapLibre map (schematic has no pan/zoom)
 FT06,VFR base map with airports airspace and navaids,map,must,S03,F01 F02,yes,no,depends on licence-clean data (openAIP/DINACIA)
 FT07,Airport information: runways frequencies fuel,airport,must,S11,F04,yes,no,
-FT08,Navlog with ETE ETA distance heading fuel per leg,flight plan,must,S08,F01,yes,no,
+FT08,Navlog with ETE ETA distance heading fuel per leg,flight plan,must,S08,F01,yes,partial,built and unit-tested (great-circle + ETE/ETA/fuel); no wind yet
 FT09,Pilot profile with personal minimums,settings,must,S01 S14,F05,yes,no,
 FT10,Aircraft profile with performance for calculations,settings,must,S14,F05,yes,no,cruise fuel climb glide
 FT11,METAR and TAF for airports on the route,weather,must,S09 S12,F03,yes,no,source: NOAA/DINACIA to confirm
