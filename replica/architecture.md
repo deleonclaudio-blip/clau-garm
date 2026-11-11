@@ -212,8 +212,12 @@ downloaded pack is a read-only attached DB:
 -- region pack (read-only, compiled by the pipeline, attached at runtime)
 CREATE TABLE airports (ident TEXT PRIMARY KEY, name TEXT, lat REAL, lon REAL,
   elevation_ft INTEGER, runways TEXT, frequencies TEXT, fuel TEXT);
-CREATE TABLE airspace (id TEXT PRIMARY KEY, name TEXT, class TEXT,
-  lower_ft INTEGER, upper_ft INTEGER, geom TEXT);   -- GeoJSON
+CREATE TABLE airspace (id TEXT PRIMARY KEY, name TEXT, type TEXT, class TEXT,
+  -- limits as value + unit + reference: Uruguay mixes FL, feet and METRES
+  -- (e.g. TMA Carrasco "600 m MSL", CTR Carrasco "FL35 / GND"). Store all three.
+  lower_val REAL, lower_unit TEXT, lower_ref TEXT,   -- unit: ft|m|fl  ref: msl|gnd|std
+  upper_val REAL, upper_unit TEXT, upper_ref TEXT,
+  geom TEXT);   -- GeoJSON
 CREATE TABLE navaids (ident TEXT PRIMARY KEY, type TEXT, lat REAL, lon REAL, freq TEXT);
 -- live weather cache (written by the app, TTL, never authoritative)
 CREATE TABLE wx_cache (station TEXT, product TEXT, issued_at TEXT, raw TEXT,
@@ -265,7 +269,11 @@ Garmin's private endpoints or databases.
   DST in the past. Store UTC, display both Zulu and local, never a naive local
   time.
 - **Units.** Store SI; display feet, knots, nm, °C, hPa/inHg, litres/USg per
-  the pilot's setting. A unit bug in an EFB is a safety bug.
+  the pilot's setting. A unit bug in an EFB is a safety bug. **Airspace limits
+  are not uniform**: Uruguay publishes some in metres (e.g. "600 m MSL"),
+  others as flight levels or feet, so limits are stored as value + unit +
+  reference, never coerced to one unit on ingest. (Confirmed against openAIP's
+  Carrasco TMA/CTR/ATZ, which has structured coverage for Uruguay.)
 - **Data currency.** Packs carry an AIRAC cycle and effective date; the app
   must warn on an expired pack (Garmin's own repeated warning). Weather cache
   shows its age and is never treated as current.
