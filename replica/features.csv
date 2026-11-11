@@ -1,0 +1,31 @@
+id,feature,area,priority,screens,flows,original,clone,notes
+FT01,Enter departure and destination to build a route,flight plan,must,S05 S06,F01,yes,no,FastFind predictive waypoint entry
+FT02,Add and reorder waypoints in a route,flight plan,must,S05,F01,yes,no,
+FT03,Draw the active route on the map,map,must,S03,F01 F02,yes,no,
+FT04,Moving map with own-ship position from GPS,map,must,S03,F02,yes,no,core in-flight view; needs device GPS
+FT05,Pan and zoom the map,map,must,S03,F02,yes,no,
+FT06,VFR base map with airports airspace and navaids,map,must,S03,F01 F02,yes,no,depends on licence-clean data (openAIP/DINACIA)
+FT07,Airport information: runways frequencies fuel,airport,must,S11,F04,yes,no,
+FT08,Navlog with ETE ETA distance heading fuel per leg,flight plan,must,S08,F01,yes,no,
+FT09,Pilot profile with personal minimums,settings,must,S01 S14,F05,yes,no,
+FT10,Aircraft profile with performance for calculations,settings,must,S14,F05,yes,no,cruise fuel climb glide
+FT11,METAR and TAF for airports on the route,weather,must,S09 S12,F03,yes,no,source: NOAA/DINACIA to confirm
+FT12,Offline databases by region,data,must,S13,F06,yes,no,fly without internet
+FT13,Nearest airports navaids and waypoints,map,should,S03,F02 F04,yes,no,
+FT14,Direct-To any waypoint,flight plan,should,S03,F02,yes,no,
+FT15,Winds aloft and NOTAM in the briefing,weather,should,S09 S12,F03,yes,no,
+FT16,Weather overlays on the map (radar lightning),map,should,S03 S04,F03,yes,no,regional radar availability varies
+FT17,Weight and balance per aircraft,tools,should,S15,F05,yes,no,
+FT18,Split-screen map plus widgets or panel,map,should,S03 S12,F02,yes,no,
+FT19,Glide range ring from aircraft performance,map,could,S03,F02,yes,no,
+FT20,Digital logbook with auto-logging,logbook,could,S16,,yes,no,
+FT21,Custom checklists,tools,could,S17,,yes,no,
+FT22,Time and location alerts,map,could,S03,F02,yes,no,
+FT23,File the flight plan with a provider,flight plan,should,S10,F03,yes,skip,US providers (Leidos/DUATS) out of scope; needs a UY/regional filing channel to be designed
+FT24,Geo-referenced FliteCharts and SafeTaxi,charts,could,,,yes,skip,Garmin licensed cartography
+FT25,IFR en-route charts and approach plates,charts,could,,,yes,skip,licensed; IFR is out of the chosen slice
+FT26,VFR sectional and TAC raster charts,charts,should,,,yes,skip,licensed raster charts; replace with vector VFR map (FT06)
+FT27,Connext and avionics hardware integration,hardware,could,,,yes,skip,Garmin devices and paid feeds
+FT28,SiriusXM and ADS-B traffic,hardware,could,,,yes,skip,paid data / hardware
+FT29,Synthetic Vision,map,could,,,yes,skip,premium 3D terrain; out of slice
+FT30,AOPA Airport Directory and fuel prices,airport,could,,,yes,skip,US licensed directory

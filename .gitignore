@@ -1,0 +1,9 @@
+# Build output
+node_modules/
+.expo/
+dist/
+build/
+
+# Replica: third-party reference material, never commit
+replica/screens/
+replica/reviews.csv
