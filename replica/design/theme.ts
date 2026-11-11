@@ -1,0 +1,60 @@
+// Generated from replica/design/tokens.json — do not hand-edit.
+// React Native theme (the app is Expo, not web; no Tailwind).
+export const theme = {
+  color: {
+    bg: "#0b0f14",
+    surface: "#161c24",
+    "surface-raised": "#1e2630",
+    border: "#2a333f",
+    "border-input": "#6b7684",
+    "focus-ring": "#9aa7b4",
+    text: "#e8edf2",
+    "text-muted": "#9aa7b4",
+    accent: "#8a97a4",
+    "on-accent": "#0b0f14",
+    danger: "#f87171",
+    success: "#4ade80",
+    warning: "#fbbf24",
+  },
+  map: {
+    "wx-vfr": "#22c55e",
+    "wx-mvfr": "#3b82f6",
+    "wx-ifr": "#ef4444",
+    "wx-lifr": "#d946ef",
+    "terrain-caution": "#fbbf24",
+    "terrain-warning": "#ef4444",
+    airspace: "#60a5fa",
+    ownship: "#ffffff",
+    route: "#a855f7",
+  },
+  font: {
+    sans: "Inter, system-ui, Roboto, sans-serif",
+    mono: "RobotoMono, ui-monospace, monospace",
+  },
+  type: {
+    xs: {"size": 13, "line": 18, "weight": 500},
+    sm: {"size": 15, "line": 20, "weight": 400},
+    base: {"size": 17, "line": 24, "weight": 400},
+    lg: {"size": 20, "line": 26, "weight": 600},
+    xl: {"size": 28, "line": 34, "weight": 700},
+    display: {"size": 40, "line": 46, "weight": 700},
+    data: {"size": 22, "line": 26, "weight": 600},
+  },
+  radius: {
+    sm: 6,
+    md: 10,
+    lg: 16,
+    pill: 999,
+  },
+  shadow: {
+    card: "0 1px 2px rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.3)",
+    pop: "0 12px 32px rgba(0,0,0,.5)",
+  },
+  motion: {
+    fast: "120ms",
+    base: "200ms",
+    ease: "cubic-bezier(.2,.8,.2,1)",
+  },
+  space: [0, 4, 8, 12, 16, 24, 32, 48, 64],
+  touch: { minTarget: 48 },
+} as const;

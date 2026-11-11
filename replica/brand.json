@@ -1,0 +1,7 @@
+{
+  "_about": "The one list of the original's identity. sweep.py and listing.py read it with --config. Fill the real name before replica-brand; the placeholders here fail the listing lint on purpose. colors are Garmin's brand blues so the sweep catches any that survive; confirm the exact values if you ever sample them from public material (we have no screenshots).",
+  "avoid": ["Garmin", "Garmin Pilot", "FliteCharts", "SafeTaxi", "Connext", "PlaneSync"],
+  "domains": ["garmin.com", "flygarmin.com", "fly.garmin.com"],
+  "colors": ["#007cc3", "#0072bc", "#00a0df"],
+  "allow": []
+}
