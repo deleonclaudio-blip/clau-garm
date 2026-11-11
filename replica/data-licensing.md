@@ -1,11 +1,26 @@
 # Data licensing — the open question that gates the backend
 
 The VFR map (FT06) and the whole data pipeline depend on a licence-clean source
-of aeronautical data for Uruguay and the region. Two candidates, both
-unconfirmed. These are the emails to settle it. Not legal advice — a lawyer
+of aeronautical data for Uruguay and the region. Not legal advice — a lawyer
 confirms the terms before anything ships.
 
-Send both in parallel; the answer to either can change the architecture.
+## Status (2026-11-11)
+
+- **openAIP — CC BY-NC 4.0, confirmed on their legal page.** NonCommercial, so
+  the default licence does NOT cover a paid app. Owner: Garrecht Avionik GmbH.
+  Coverage for Uruguay is real and structured (Carrasco TMA/CTR/ATZ seen on the
+  map), and data/exports + an API are offered. So the blocker is licence, not
+  coverage or format. **Action taken:** emailed contact@openaip.net to ask
+  about a *commercial* licence (not whether NC allows it — it doesn't). The
+  GitHub-issue route is now unnecessary.
+- **DINACIA — emailed aispub@dinacia.gub.uy, awaiting reply.** Key unknown is
+  the format (structured vs PDF-only) and whether commercial reuse is allowed.
+
+If neither grants commercial use, the options are: a paid commercial licence
+from openAIP, official data from DINACIA, or rescoping (e.g. personal/non-
+commercial use only). Decide before /replica-backend.
+
+The original enquiry emails are kept below for reference.
 
 ---
 
