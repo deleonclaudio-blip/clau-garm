@@ -8,3 +8,4 @@ build/
 replica/screens/
 replica/reviews.csv
 dist-test/
+dist/

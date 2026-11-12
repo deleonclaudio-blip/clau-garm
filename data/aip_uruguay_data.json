@@ -1,0 +1,1917 @@
+{
+  "metadata": {
+    "source": "AIP Uruguay - DINACIA",
+    "airac_cycle": "2025/2026",
+    "total_aerodromes": 24,
+    "total_runways": 23,
+    "total_frequencies": 18,
+    "total_navaids": 4,
+    "total_waypoints": 106,
+    "total_surface_lights": 15,
+    "total_airspaces": 21,
+    "corrections_applied": [
+      "Carrasco light lon -50.03 -> -56.03 (VERIFY vs chart)",
+      "metadata total_waypoints 91 -> 106"
+    ]
+  },
+  "aerodromes": [
+    {
+      "icao": "SUAG",
+      "name": "Artigas / Intl",
+      "category": "INTL Nivel III",
+      "lat": -30.4008,
+      "lon": -56.5081,
+      "elev_m": 124,
+      "elev_ft": 407,
+      "mag_var": -13.0,
+      "traffic": "VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUCM",
+      "name": "Carmelo / Intl",
+      "category": "INTL-NTL",
+      "lat": -33.9656,
+      "lon": -58.3253,
+      "elev_m": 25,
+      "elev_ft": 82,
+      "mag_var": -11.0,
+      "traffic": "VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUCA",
+      "name": "Colonia / Intl Laguna de los Patos",
+      "category": "INTL Nivel II",
+      "lat": -34.4564,
+      "lon": -57.7706,
+      "elev_m": 20,
+      "elev_ft": 66,
+      "mag_var": -11.0,
+      "traffic": "IFR/VFR",
+      "operator": "DINACIA",
+      "hours": "10:00-22:00 UTC",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUDU",
+      "name": "Durazno / Santa Bernardina Intl de Alternativa",
+      "category": "INTL Nivel II",
+      "lat": -33.3589,
+      "lon": -56.4992,
+      "elev_m": 93,
+      "elev_ft": 305,
+      "mag_var": -12.0,
+      "traffic": "IFR/VFR",
+      "operator": "DINACIA / FAU",
+      "hours": "H24",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SULS",
+      "name": "Maldonado / Intl C/C Carlos A. Curbelo",
+      "category": "INTL Nivel I",
+      "lat": -34.855,
+      "lon": -55.0942,
+      "elev_m": 29,
+      "elev_ft": 95,
+      "mag_var": -12.0,
+      "traffic": "IFR/VFR",
+      "operator": "CAISA",
+      "hours": "H24",
+      "certified_lar139": true
+    },
+    {
+      "icao": "SUMO",
+      "name": "Melo / Intl de Cerro Largo",
+      "category": "INTL Nivel III",
+      "lat": -32.3378,
+      "lon": -54.2167,
+      "elev_m": 111,
+      "elev_ft": 364,
+      "mag_var": -14.0,
+      "traffic": "VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUME",
+      "name": "Mercedes / Dptal Ricardo Detomasi",
+      "category": "NTL",
+      "lat": -33.2486,
+      "lon": -58.0728,
+      "elev_m": 22,
+      "elev_ft": 72,
+      "mag_var": -11.0,
+      "traffic": "VFR",
+      "operator": "DINACIA",
+      "hours": "HJ",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUAA",
+      "name": "Montevideo / Intl Ángel S. Adami",
+      "category": "INTL Nivel II",
+      "lat": -34.7892,
+      "lon": -56.2647,
+      "elev_m": 53,
+      "elev_ft": 174,
+      "mag_var": -12.0,
+      "traffic": "IFR/VFR",
+      "operator": "DINACIA",
+      "hours": "H24 (ATS 10:00-22:00 UTC)",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUMU",
+      "name": "Montevideo / Intl de Carrasco Gral. Cesáreo L. Berisso",
+      "category": "INTL Nivel I",
+      "lat": -34.8339,
+      "lon": -56.0281,
+      "elev_m": 32,
+      "elev_ft": 105,
+      "mag_var": -12.0,
+      "traffic": "IFR/VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24",
+      "certified_lar139": true
+    },
+    {
+      "icao": "SUPU",
+      "name": "Paysandú / Intl Tydeo Larre Borges",
+      "category": "INTL Nivel III",
+      "lat": -32.3642,
+      "lon": -58.0622,
+      "elev_m": 50,
+      "elev_ft": 164,
+      "mag_var": -12.0,
+      "traffic": "VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUPE",
+      "name": "Punta del Este / Dptal El Jagüel",
+      "category": "NTL",
+      "lat": -34.9131,
+      "lon": -54.9192,
+      "elev_m": 20,
+      "elev_ft": 66,
+      "mag_var": -12.0,
+      "traffic": "VFR",
+      "operator": "DINACIA",
+      "hours": "11:00 UTC - SS",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SURB",
+      "name": "Río Branco / Ad",
+      "category": "NTL",
+      "lat": -32.5831,
+      "lon": -53.4542,
+      "elev_m": 19,
+      "elev_ft": 62,
+      "mag_var": -15.0,
+      "traffic": "VFR",
+      "operator": "DINACIA",
+      "hours": "MON-FRI 11:00-19:00 UTC",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SURV",
+      "name": "Rivera / Intl Pres. Gral. Oscar D. Gestido",
+      "category": "INTL Nivel II",
+      "lat": -30.9694,
+      "lon": -55.4733,
+      "elev_m": 203,
+      "elev_ft": 666,
+      "mag_var": -14.0,
+      "traffic": "IFR/VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24 (ATS 10:00-22:00 UTC)",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUSO",
+      "name": "Salto / Intl Nueva Hespérides",
+      "category": "INTL Nivel II",
+      "lat": -31.4347,
+      "lon": -57.9842,
+      "elev_m": 43,
+      "elev_ft": 141,
+      "mag_var": -12.0,
+      "traffic": "IFR/VFR",
+      "operator": "Puerta del Sur S.A.",
+      "hours": "H24 (ATS 10:00-22:00 UTC)",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUTB",
+      "name": "Tacuarembó / Departamental",
+      "category": "NTL",
+      "lat": -31.7503,
+      "lon": -55.9239,
+      "elev_m": 134,
+      "elev_ft": 440,
+      "mag_var": -14.0,
+      "traffic": "VFR",
+      "operator": "DINACIA",
+      "hours": "MON-FRI 11:00-21:00 UTC",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUTR",
+      "name": "Treinta y Tres / Ad",
+      "category": "NTL",
+      "lat": -33.195,
+      "lon": -54.3472,
+      "elev_m": 62,
+      "elev_ft": 203,
+      "mag_var": -14.0,
+      "traffic": "VFR",
+      "operator": "DINACIA",
+      "hours": "MON-FRI 11:00-19:00 UTC",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUVO",
+      "name": "Vichadero / Ad",
+      "category": "NTL",
+      "lat": -31.7392,
+      "lon": -54.5878,
+      "elev_m": 149,
+      "elev_ft": 488,
+      "mag_var": -15.0,
+      "traffic": "VFR",
+      "operator": "DINACIA",
+      "hours": "MON-FRI 11:00-19:00 UTC",
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUAN",
+      "name": "Anchorena / Ad",
+      "category": "NTL",
+      "lat": -34.2756,
+      "lon": -57.9639,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "Nacional",
+      "hours": null,
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUBL",
+      "name": "Boiso Lanza / Ad Mil",
+      "category": "MIL",
+      "lat": -34.6958,
+      "lon": -56.1639,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "FAU (Coord. COA)",
+      "hours": null,
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUPC",
+      "name": "Chalkling / Ad",
+      "category": "NTL",
+      "lat": -32.38,
+      "lon": -58.0286,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "Privado",
+      "hours": null,
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUGA",
+      "name": "General Artigas E.M.A / Ad Mil",
+      "category": "MIL",
+      "lat": -34.7478,
+      "lon": -55.9608,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "FAU (Coord. COA)",
+      "hours": null,
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUCL",
+      "name": "La Calera - Minas / Ad",
+      "category": "NTL",
+      "lat": -34.2906,
+      "lon": -55.3553,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "FAU (Coord. COA)",
+      "hours": null,
+      "certified_lar139": false
+    },
+    {
+      "icao": "SUCR",
+      "name": "La Carolina / Ad Mil",
+      "category": "MIL",
+      "lat": -32.8689,
+      "lon": -56.2489,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "FAU (Coord. COA)",
+      "hours": null,
+      "certified_lar139": false
+    },
+    {
+      "icao": "SURS",
+      "name": "Residencia Suárez / Heli",
+      "category": "HELI (Restringido)",
+      "lat": -34.8586,
+      "lon": -56.1969,
+      "elev_m": null,
+      "elev_ft": null,
+      "mag_var": null,
+      "traffic": "VFR",
+      "operator": "Presidencia",
+      "hours": null,
+      "certified_lar139": false
+    }
+  ],
+  "runways": [
+    {
+      "icao": "SUAG",
+      "rwy": "11/29",
+      "length_m": 1250,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "21/F/C/X/T",
+      "tora_m": 1250,
+      "lda_m": 1250,
+      "thr1_lat": -30.397778,
+      "thr1_lon": -56.513611,
+      "thr2_lat": -30.403889,
+      "thr2_lon": -56.5025
+    },
+    {
+      "icao": "SUCM",
+      "rwy": "17/35",
+      "length_m": 1090,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "5700 KG",
+      "tora_m": 1090,
+      "lda_m": 1090,
+      "thr1_lat": -33.960833,
+      "thr1_lon": -58.326667,
+      "thr2_lat": -33.970278,
+      "thr2_lon": -58.323889
+    },
+    {
+      "icao": "SUCA",
+      "rwy": "13/31",
+      "length_m": 1370,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "19/F/C/X/T",
+      "tora_m": 1370,
+      "lda_m": 1370,
+      "thr1_lat": -34.451944,
+      "thr1_lon": -57.775833,
+      "thr2_lat": -34.460833,
+      "thr2_lon": -57.765278
+    },
+    {
+      "icao": "SUDU",
+      "rwy": "03/21",
+      "length_m": 2279,
+      "width_m": 45,
+      "surface": "Hormigón",
+      "pcn": "54/R/B/W/T",
+      "tora_m": 2279,
+      "lda_m": 2279,
+      "thr1_lat": -33.368056,
+      "thr1_lon": -56.503611,
+      "thr2_lat": -33.349722,
+      "thr2_lon": -56.494722
+    },
+    {
+      "icao": "SUDU",
+      "rwy": "10/28",
+      "length_m": 1463,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "28/F/C/X/T",
+      "tora_m": 1463,
+      "lda_m": 1463,
+      "thr1_lat": -33.359444,
+      "thr1_lon": -56.506944,
+      "thr2_lat": -33.358333,
+      "thr2_lon": -56.491389
+    },
+    {
+      "icao": "SULS",
+      "rwy": "08/26",
+      "length_m": 2133,
+      "width_m": 45,
+      "surface": "Concreto asfáltico",
+      "pcn": "52/F/C/W/T",
+      "tora_m": 2133,
+      "lda_m": 2133,
+      "thr1_lat": -34.856944,
+      "thr1_lon": -55.105556,
+      "thr2_lat": -34.853056,
+      "thr2_lon": -55.082778
+    },
+    {
+      "icao": "SULS",
+      "rwy": "01/19",
+      "length_m": 1600,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "30/F/C/X/T",
+      "tora_m": 1600,
+      "lda_m": 1600,
+      "thr1_lat": -34.861944,
+      "thr1_lon": -55.093333,
+      "thr2_lat": -34.848056,
+      "thr2_lon": -55.095
+    },
+    {
+      "icao": "SUMO",
+      "rwy": "07/25",
+      "length_m": 1520,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "22/F/C/X/T",
+      "tora_m": 1520,
+      "lda_m": 1520,
+      "thr1_lat": -32.340833,
+      "thr1_lon": -54.223889,
+      "thr2_lat": -32.334722,
+      "thr2_lon": -54.209444
+    },
+    {
+      "icao": "SUME",
+      "rwy": "16/34",
+      "length_m": 1235,
+      "width_m": 30,
+      "surface": "Césped",
+      "pcn": null,
+      "tora_m": 1235,
+      "lda_m": 1235,
+      "thr1_lat": -33.242778,
+      "thr1_lon": -58.077525,
+      "thr2_lat": -33.252631,
+      "thr2_lon": -58.071336
+    },
+    {
+      "icao": "SUME",
+      "rwy": "08/26",
+      "length_m": 1120,
+      "width_m": 30,
+      "surface": "Césped",
+      "pcn": null,
+      "tora_m": 1120,
+      "lda_m": 1120,
+      "thr1_lat": -33.250003,
+      "thr1_lon": -58.077575,
+      "thr2_lat": -33.246633,
+      "thr2_lon": -58.066203
+    },
+    {
+      "icao": "SUAA",
+      "rwy": "01/19",
+      "length_m": 1250,
+      "width_m": 23,
+      "surface": "Hormigón",
+      "pcn": "85/R/C/W/T",
+      "tora_m": 1250,
+      "lda_m": 1250,
+      "thr1_lat": -34.794633,
+      "thr1_lon": -56.264544,
+      "thr2_lat": -34.783383,
+      "thr2_lon": -56.265333
+    },
+    {
+      "icao": "SUMU",
+      "rwy": "07/25",
+      "length_m": 3200,
+      "width_m": 45,
+      "surface": "Hormigón/Asfalto",
+      "pcn": "88/F/C/W/U",
+      "tora_m": 3050,
+      "lda_m": 2700,
+      "thr1_lat": -34.842122,
+      "thr1_lon": -56.036936,
+      "thr2_lat": -34.82765,
+      "thr2_lon": -56.013181
+    },
+    {
+      "icao": "SUMU",
+      "rwy": "01/19",
+      "length_m": 2250,
+      "width_m": 45,
+      "surface": "Concreto asfáltico",
+      "pcn": "70/F/C/W/T",
+      "tora_m": 2250,
+      "lda_m": 2250,
+      "thr1_lat": -34.841969,
+      "thr1_lon": -56.030736,
+      "thr2_lat": -34.821689,
+      "thr2_lon": -56.030989
+    },
+    {
+      "icao": "SUPU",
+      "rwy": "02/20",
+      "length_m": 1320,
+      "width_m": 30,
+      "surface": "Concreto asfáltico",
+      "pcn": "210/F/C/X/T",
+      "tora_m": 1320,
+      "lda_m": 1320,
+      "thr1_lat": -32.370089,
+      "thr1_lon": -58.063361,
+      "thr2_lat": -32.358333,
+      "thr2_lon": -58.061206
+    },
+    {
+      "icao": "SUPE",
+      "rwy": "02/20",
+      "length_m": 570,
+      "width_m": 20,
+      "surface": "Concreto asfáltico",
+      "pcn": "MTOW 5700 KG",
+      "tora_m": 840,
+      "lda_m": 570,
+      "thr1_lat": -34.911961,
+      "thr1_lon": -54.920425,
+      "thr2_lat": -34.906839,
+      "thr2_lon": -54.919911
+    },
+    {
+      "icao": "SURB",
+      "rwy": "14/32",
+      "length_m": 858,
+      "width_m": 23,
+      "surface": "Césped",
+      "pcn": "5700 KG",
+      "tora_m": 858,
+      "lda_m": 858,
+      "thr1_lat": -32.580831,
+      "thr1_lon": -53.457775,
+      "thr2_lat": -32.585275,
+      "thr2_lon": -53.450306
+    },
+    {
+      "icao": "SURV",
+      "rwy": "05/23",
+      "length_m": 1830,
+      "width_m": 45,
+      "surface": "Concreto asfáltico",
+      "pcn": "420/F/C/X/T",
+      "tora_m": 1680,
+      "lda_m": 1680,
+      "thr1_lat": -30.980744,
+      "thr1_lon": -55.482553,
+      "thr2_lat": -30.969475,
+      "thr2_lon": -55.470814
+    },
+    {
+      "icao": "SUSO",
+      "rwy": "05/23",
+      "length_m": 1588,
+      "width_m": 45,
+      "surface": "Concreto asfáltico",
+      "pcn": "410/R/A/W/T",
+      "tora_m": 1588,
+      "lda_m": 1588,
+      "thr1_lat": -31.44405,
+      "thr1_lon": -57.990533,
+      "thr2_lat": -31.432908,
+      "thr2_lon": -57.980056
+    },
+    {
+      "icao": "SUSO",
+      "rwy": "13/31",
+      "length_m": 700,
+      "width_m": 50,
+      "surface": "Césped",
+      "pcn": null,
+      "tora_m": 700,
+      "lda_m": 700,
+      "thr1_lat": -31.430972,
+      "thr1_lon": -57.988678,
+      "thr2_lat": -31.433761,
+      "thr2_lon": -57.982069
+    },
+    {
+      "icao": "SUTB",
+      "rwy": "10/28",
+      "length_m": 1160,
+      "width_m": 23,
+      "surface": "Tratamiento bituminoso",
+      "pcn": "5700 KG",
+      "tora_m": 1160,
+      "lda_m": 1160,
+      "thr1_lat": -31.749369,
+      "thr1_lon": -55.931869,
+      "thr2_lat": -31.748689,
+      "thr2_lon": -55.919647
+    },
+    {
+      "icao": "SUTR",
+      "rwy": "01/19",
+      "length_m": 1070,
+      "width_m": 38,
+      "surface": "Césped",
+      "pcn": null,
+      "tora_m": 1070,
+      "lda_m": 1070,
+      "thr1_lat": -33.199767,
+      "thr1_lon": -54.346825,
+      "thr2_lat": -33.190169,
+      "thr2_lon": -54.347789
+    },
+    {
+      "icao": "SUTR",
+      "rwy": "10/28",
+      "length_m": 600,
+      "width_m": 24,
+      "surface": "Césped",
+      "pcn": null,
+      "tora_m": 600,
+      "lda_m": 600,
+      "thr1_lat": -33.1961,
+      "thr1_lon": -54.354933,
+      "thr2_lat": -33.195625,
+      "thr2_lon": -54.347061
+    },
+    {
+      "icao": "SUVO",
+      "rwy": "05/23",
+      "length_m": 981,
+      "width_m": 19,
+      "surface": "Césped",
+      "pcn": null,
+      "tora_m": 981,
+      "lda_m": 981,
+      "thr1_lat": -31.742683,
+      "thr1_lon": -54.590467,
+      "thr2_lat": -31.735392,
+      "thr2_lon": -54.584953
+    }
+  ],
+  "frequencies": [
+    {
+      "icao": "SUAG",
+      "service": "AFIS",
+      "callsign": "Artigas Información",
+      "freq_mhz": 118.5,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUCM",
+      "service": "AFIS",
+      "callsign": "Carmelo Información",
+      "freq_mhz": 118.7,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUCA",
+      "service": "TWR",
+      "callsign": "Colonia Torre",
+      "freq_mhz": 118.6,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUDU",
+      "service": "TWR/APP",
+      "callsign": "Durazno Torre / Aproximación",
+      "freq_mhz": 118.3,
+      "secondary_mhz": 119.7
+    },
+    {
+      "icao": "SULS",
+      "service": "TWR",
+      "callsign": "Curbelo Torre",
+      "freq_mhz": 118.3,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SULS",
+      "service": "APP",
+      "callsign": "Curbelo Aproximación",
+      "freq_mhz": 119.8,
+      "secondary_mhz": null
+    },
+    {
+      "icao": "SULS",
+      "service": "ATIS",
+      "callsign": "Curbelo ATIS",
+      "freq_mhz": 127.6,
+      "secondary_mhz": null
+    },
+    {
+      "icao": "SUMO",
+      "service": "AFIS",
+      "callsign": "Melo Información",
+      "freq_mhz": 118.1,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUAA",
+      "service": "TWR",
+      "callsign": "Adami Torre",
+      "freq_mhz": 118.4,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUMU",
+      "service": "TWR",
+      "callsign": "Carrasco Torre",
+      "freq_mhz": 118.1,
+      "secondary_mhz": 121.8
+    },
+    {
+      "icao": "SUMU",
+      "service": "APP",
+      "callsign": "Carrasco Radar",
+      "freq_mhz": 119.2,
+      "secondary_mhz": 120.2
+    },
+    {
+      "icao": "SUMU",
+      "service": "ACC",
+      "callsign": "Montevideo Control",
+      "freq_mhz": 128.5,
+      "secondary_mhz": 126.3
+    },
+    {
+      "icao": "SUPU",
+      "service": "AFIS",
+      "callsign": "Paysandú Información",
+      "freq_mhz": 118.2,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUPU",
+      "service": "ATIS",
+      "callsign": "Paysandú ATIS",
+      "freq_mhz": 127.775,
+      "secondary_mhz": null
+    },
+    {
+      "icao": "SUPE",
+      "service": "TIBA/ATZ",
+      "callsign": "El Jagüel Tránsito",
+      "freq_mhz": 118.7,
+      "secondary_mhz": null
+    },
+    {
+      "icao": "SURV",
+      "service": "TWR",
+      "callsign": "Rivera Torre",
+      "freq_mhz": 118.0,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUSO",
+      "service": "TWR",
+      "callsign": "Salto Torre",
+      "freq_mhz": 118.8,
+      "secondary_mhz": 122.1
+    },
+    {
+      "icao": "SUTB",
+      "service": "AFIS",
+      "callsign": "Tacuarembó Información",
+      "freq_mhz": 118.9,
+      "secondary_mhz": 122.1
+    }
+  ],
+  "navaids": [
+    {
+      "ident": "CRR",
+      "name": "VOR/DME Carrasco",
+      "type": "VOR/DME",
+      "freq": "116.9 MHz",
+      "ch": "CH 116X",
+      "lat": -34.832722,
+      "lon": -56.025139,
+      "elev_m": 30
+    },
+    {
+      "ident": "DUR",
+      "name": "VOR/DME Durazno",
+      "type": "VOR/DME",
+      "freq": "117.5 MHz",
+      "ch": "CH 122X",
+      "lat": -33.35625,
+      "lon": -56.496056,
+      "elev_m": 90
+    },
+    {
+      "ident": "LDS",
+      "name": "VOR/DME Curbelo",
+      "type": "VOR/DME",
+      "freq": "117.6 MHz",
+      "ch": "CH 123X",
+      "lat": -34.858306,
+      "lon": -55.091722,
+      "elev_m": 30
+    },
+    {
+      "ident": "ASI",
+      "name": "NDB Adami",
+      "type": "NDB",
+      "freq": "395 kHz",
+      "ch": null,
+      "lat": -34.789528,
+      "lon": -56.263028,
+      "elev_m": null
+    }
+  ],
+  "waypoints": [
+    {
+      "ident": "AKNUS",
+      "lat": -34.332767,
+      "lon": -57.836933,
+      "route": "SUCA IAC RNAV 13"
+    },
+    {
+      "ident": "AKPOD",
+      "lat": -32.465833,
+      "lon": -53.561389,
+      "route": "UM540"
+    },
+    {
+      "ident": "AKSET",
+      "lat": -34.480267,
+      "lon": -57.931383,
+      "route": "SUCA IAC RNAV 13"
+    },
+    {
+      "ident": "ALBES",
+      "lat": -33.369233,
+      "lon": -56.7095,
+      "route": "SUDU IAC RNAV 10"
+    },
+    {
+      "ident": "ALDUS",
+      "lat": -31.574953,
+      "lon": -58.111639,
+      "route": "SUSO IAC RNAV 05"
+    },
+    {
+      "ident": "ANKIR",
+      "lat": -31.104986,
+      "lon": -55.612231,
+      "route": "SURV IAC RNP RWY 05"
+    },
+    {
+      "ident": "ANLUN",
+      "lat": -30.708333,
+      "lon": -56.601389,
+      "route": "UL324 UM418"
+    },
+    {
+      "ident": "ANRUP",
+      "lat": -33.794722,
+      "lon": -56.2025,
+      "route": "UM402 UN857"
+    },
+    {
+      "ident": "ARAPE",
+      "lat": -31.016667,
+      "lon": -57.370278,
+      "route": "W19 W20"
+    },
+    {
+      "ident": "AROMO",
+      "lat": -33.500556,
+      "lon": -55.045556,
+      "route": "A310 W18"
+    },
+    {
+      "ident": "ASIVA",
+      "lat": -33.840556,
+      "lon": -56.343056,
+      "route": "P526 W19"
+    },
+    {
+      "ident": "ASUMA",
+      "lat": -31.8675,
+      "lon": -54.155278,
+      "route": "A310"
+    },
+    {
+      "ident": "BISOK",
+      "lat": -32.879444,
+      "lon": -56.678056,
+      "route": "P526 W19"
+    },
+    {
+      "ident": "BOBUM",
+      "lat": -30.907297,
+      "lon": -55.406117,
+      "route": "SURV IAC RNP RWY 23"
+    },
+    {
+      "ident": "BOLAT",
+      "lat": -33.663611,
+      "lon": -54.010833,
+      "route": "A305"
+    },
+    {
+      "ident": "BUTSI",
+      "lat": -33.197092,
+      "lon": -56.416428,
+      "route": "SUDU IAC RNAV 21"
+    },
+    {
+      "ident": "CUARA",
+      "lat": -30.386944,
+      "lon": -56.463889,
+      "route": "UL324"
+    },
+    {
+      "ident": "DAGUS",
+      "lat": -35.038056,
+      "lon": -56.123611,
+      "route": "A306 A310 UL405 UM792"
+    },
+    {
+      "ident": "DAMEV",
+      "lat": -32.333692,
+      "lon": -58.056731,
+      "route": "SUPU IAC GNSS 20"
+    },
+    {
+      "ident": "DAMPA",
+      "lat": -31.493106,
+      "lon": -58.0369,
+      "route": "SUSO IAC RNAV 05"
+    },
+    {
+      "ident": "DARKA",
+      "lat": -35.299444,
+      "lon": -56.250556,
+      "route": "A310 UM792"
+    },
+    {
+      "ident": "DAYMA",
+      "lat": -31.787222,
+      "lon": -57.087222,
+      "route": "UL324 UP526"
+    },
+    {
+      "ident": "DIDER",
+      "lat": -33.364467,
+      "lon": -56.610133,
+      "route": "SUDU IAC RNAV 10"
+    },
+    {
+      "ident": "DORVO",
+      "lat": -34.716111,
+      "lon": -57.517222,
+      "route": "A305 UM424 UN857"
+    },
+    {
+      "ident": "DRACA",
+      "lat": -34.423333,
+      "lon": -56.374167,
+      "route": "W25"
+    },
+    {
+      "ident": "EGDOK",
+      "lat": -34.537469,
+      "lon": -57.585817,
+      "route": "SUCA IAC RNAV 31"
+    },
+    {
+      "ident": "EGUPI",
+      "lat": -34.422167,
+      "lon": -57.848417,
+      "route": "SUCA IAC RNAV 13"
+    },
+    {
+      "ident": "EKEKI",
+      "lat": -31.118333,
+      "lon": -56.19,
+      "route": "W16 W25"
+    },
+    {
+      "ident": "ENSAS",
+      "lat": -31.911111,
+      "lon": -57.146944,
+      "route": "UL324 UM534"
+    },
+    {
+      "ident": "ENTED",
+      "lat": -33.179722,
+      "lon": -56.563333,
+      "route": "UN741 UP526"
+    },
+    {
+      "ident": "ESORI",
+      "lat": -33.273806,
+      "lon": -56.455644,
+      "route": "SUDU IAC RNAV 21"
+    },
+    {
+      "ident": "GAMOT",
+      "lat": -30.944444,
+      "lon": -55.493611,
+      "route": "UA432 UM654"
+    },
+    {
+      "ident": "GEBAR",
+      "lat": -34.406483,
+      "lon": -57.883983,
+      "route": "SUCA IAC RNAV 13"
+    },
+    {
+      "ident": "GEMOT",
+      "lat": -33.34955,
+      "lon": -56.3122,
+      "route": "SUDU IAC RNAV 10"
+    },
+    {
+      "ident": "GEMSU",
+      "lat": -30.266667,
+      "lon": -57.638333,
+      "route": "P526 UP526 W19"
+    },
+    {
+      "ident": "GUTUD",
+      "lat": -30.379408,
+      "lon": -56.705681,
+      "route": "SUAG IAC RNAV 11"
+    },
+    {
+      "ident": "GUVIN",
+      "lat": -34.383889,
+      "lon": -56.293611,
+      "route": "W23"
+    },
+    {
+      "ident": "GUVON",
+      "lat": -33.892222,
+      "lon": -57.384167,
+      "route": "UL417 UN741"
+    },
+    {
+      "ident": "ILMUL",
+      "lat": -32.145556,
+      "lon": -56.475556,
+      "route": "UM402 UM654"
+    },
+    {
+      "ident": "ILNAN",
+      "lat": -30.389739,
+      "lon": -56.610075,
+      "route": "SUAG IAC RNAV 11"
+    },
+    {
+      "ident": "ILSIM",
+      "lat": -31.733333,
+      "lon": -56.542222,
+      "route": "UM402 UM534"
+    },
+    {
+      "ident": "ISALA",
+      "lat": -31.676111,
+      "lon": -54.446389,
+      "route": "A314"
+    },
+    {
+      "ident": "KOSPI",
+      "lat": -34.700556,
+      "lon": -56.648889,
+      "route": "W29"
+    },
+    {
+      "ident": "KUDEN",
+      "lat": -31.042883,
+      "lon": -55.54735,
+      "route": "SURV IAC RNP RWY 05"
+    },
+    {
+      "ident": "KUGUG",
+      "lat": -34.494333,
+      "lon": -57.684278,
+      "route": "SUCA IAC RNAV 31"
+    },
+    {
+      "ident": "KUKEN",
+      "lat": -34.182778,
+      "lon": -58.217222,
+      "route": "UL324 UM654"
+    },
+    {
+      "ident": "LITOS",
+      "lat": -34.458889,
+      "lon": -54.726111,
+      "route": "A305"
+    },
+    {
+      "ident": "LOLIL",
+      "lat": -31.883056,
+      "lon": -57.050833,
+      "route": "UM534 UP526"
+    },
+    {
+      "ident": "LOMID",
+      "lat": -33.885556,
+      "lon": -56.329167,
+      "route": "UN857 UP526"
+    },
+    {
+      "ident": "LUCIO",
+      "lat": -35.055,
+      "lon": -55.871667,
+      "route": "A306 UL405"
+    },
+    {
+      "ident": "MEVIV",
+      "lat": -31.310833,
+      "lon": -57.262778,
+      "route": "W19 W25"
+    },
+    {
+      "ident": "MIGOT",
+      "lat": -30.88,
+      "lon": -56.678333,
+      "route": "UM402 UL324"
+    },
+    {
+      "ident": "MIMOL",
+      "lat": -32.3425,
+      "lon": -54.221944,
+      "route": "W3 W18 UM792 UN857"
+    },
+    {
+      "ident": "MOLBI",
+      "lat": -34.347222,
+      "lon": -55.505,
+      "route": "UM540"
+    },
+    {
+      "ident": "MONSA",
+      "lat": -34.348889,
+      "lon": -56.181389,
+      "route": "P526 W19 UP526"
+    },
+    {
+      "ident": "MUKIB",
+      "lat": -30.719722,
+      "lon": -56.703611,
+      "route": "UM418 UM402"
+    },
+    {
+      "ident": "MUMET",
+      "lat": -33.010556,
+      "lon": -56.064722,
+      "route": "SUDU RNAV RWY 21"
+    },
+    {
+      "ident": "NEMAS",
+      "lat": -34.584167,
+      "lon": -57.186389,
+      "route": "W29"
+    },
+    {
+      "ident": "NIGRO",
+      "lat": -31.962222,
+      "lon": -53.916944,
+      "route": "UM792"
+    },
+    {
+      "ident": "NIMBO",
+      "lat": -34.513611,
+      "lon": -56.492222,
+      "route": "B555 UL417"
+    },
+    {
+      "ident": "OGMAR",
+      "lat": -33.293056,
+      "lon": -54.148889,
+      "route": "A309"
+    },
+    {
+      "ident": "OGRUN",
+      "lat": -32.061944,
+      "lon": -53.842778,
+      "route": "UN857"
+    },
+    {
+      "ident": "OKBAM",
+      "lat": -31.167058,
+      "lon": -55.677194,
+      "route": "SURV IAC RNP RWY 05"
+    },
+    {
+      "ident": "OPSOS",
+      "lat": -32.405,
+      "lon": -56.856944,
+      "route": "P526 G680"
+    },
+    {
+      "ident": "ORELO",
+      "lat": -31.037936,
+      "lon": -55.698772,
+      "route": "SURV IAC RNP RWY 05"
+    },
+    {
+      "ident": "OSIXO",
+      "lat": -30.77835,
+      "lon": -55.428142,
+      "route": "SURV IAC RNP RWY 23"
+    },
+    {
+      "ident": "PABOT",
+      "lat": -34.26,
+      "lon": -56.859444,
+      "route": "UL417 UN857"
+    },
+    {
+      "ident": "PAPIX",
+      "lat": -34.416111,
+      "lon": -58.000556,
+      "route": "A314 UN741"
+    },
+    {
+      "ident": "PONPA",
+      "lat": -33.940278,
+      "lon": -57.316389,
+      "route": "A314 B555 UA314"
+    },
+    {
+      "ident": "PORLI",
+      "lat": -31.571944,
+      "lon": -56.002778,
+      "route": "UM534 UM654"
+    },
+    {
+      "ident": "PUKAL",
+      "lat": -31.172094,
+      "lon": -55.525686,
+      "route": "SURV IAC RNP RWY 05"
+    },
+    {
+      "ident": "PUMIL",
+      "lat": -32.540833,
+      "lon": -56.805556,
+      "route": "UM654 UP526"
+    },
+    {
+      "ident": "RAVEL",
+      "lat": -34.467222,
+      "lon": -54.713611,
+      "route": "UM424"
+    },
+    {
+      "ident": "REBIN",
+      "lat": -32.966111,
+      "lon": -57.121667,
+      "route": "W23 W27"
+    },
+    {
+      "ident": "REGOV",
+      "lat": -34.332222,
+      "lon": -56.008056,
+      "route": "W15"
+    },
+    {
+      "ident": "RODOV",
+      "lat": -30.834444,
+      "lon": -57.804722,
+      "route": "UM418"
+    },
+    {
+      "ident": "SANDU",
+      "lat": -32.201111,
+      "lon": -57.556389,
+      "route": "W23"
+    },
+    {
+      "ident": "SASKU",
+      "lat": -30.798333,
+      "lon": -57.4475,
+      "route": "UM418 UP526"
+    },
+    {
+      "ident": "SEKLO",
+      "lat": -30.108056,
+      "lon": -56.799444,
+      "route": "UM402"
+    },
+    {
+      "ident": "SEKMI",
+      "lat": -31.434722,
+      "lon": -57.984167,
+      "route": "W20 W23 W25"
+    },
+    {
+      "ident": "SIMOL",
+      "lat": -32.191706,
+      "lon": -58.03065,
+      "route": "SUPU IAC RNAV 20"
+    },
+    {
+      "ident": "SOLIS",
+      "lat": -34.349167,
+      "lon": -55.424722,
+      "route": "A309"
+    },
+    {
+      "ident": "SUGRA",
+      "lat": -32.209444,
+      "lon": -58.19,
+      "route": "UM534"
+    },
+    {
+      "ident": "SURBO",
+      "lat": -34.449444,
+      "lon": -57.960556,
+      "route": "Corredor SURBO VFR"
+    },
+    {
+      "ident": "TELAK",
+      "lat": -34.342778,
+      "lon": -55.660556,
+      "route": "A310 W18 UM792"
+    },
+    {
+      "ident": "TEMAL",
+      "lat": -31.750278,
+      "lon": -55.923889,
+      "route": "W15 W16"
+    },
+    {
+      "ident": "TESAD",
+      "lat": -33.658611,
+      "lon": -57.014444,
+      "route": "W25"
+    },
+    {
+      "ident": "TIDRU",
+      "lat": -34.015833,
+      "lon": -55.017222,
+      "route": "A309"
+    },
+    {
+      "ident": "TILDA",
+      "lat": -33.638889,
+      "lon": -57.742222,
+      "route": "UL417 UM654"
+    },
+    {
+      "ident": "TOGAL",
+      "lat": -33.525278,
+      "lon": -57.901667,
+      "route": "UL417 UL324"
+    },
+    {
+      "ident": "TOKAM",
+      "lat": -34.781389,
+      "lon": -56.715556,
+      "route": "A305 UM424"
+    },
+    {
+      "ident": "TOLEP",
+      "lat": -32.728056,
+      "lon": -53.086111,
+      "route": "UM424 UM661"
+    },
+    {
+      "ident": "TOSIB",
+      "lat": -34.351667,
+      "lon": -55.331944,
+      "route": "UM661"
+    },
+    {
+      "ident": "TULIO",
+      "lat": -31.539722,
+      "lon": -54.500278,
+      "route": "G680"
+    },
+    {
+      "ident": "UBLAM",
+      "lat": -30.659722,
+      "lon": -56.162222,
+      "route": "UM418"
+    },
+    {
+      "ident": "UGELO",
+      "lat": -32.678333,
+      "lon": -53.147222,
+      "route": "A305"
+    },
+    {
+      "ident": "UGIMI",
+      "lat": -34.982778,
+      "lon": -56.883889,
+      "route": "A306 UL405"
+    },
+    {
+      "ident": "UGRES",
+      "lat": -32.274217,
+      "lon": -58.045764,
+      "route": "SUPU IAC GNSS 20"
+    },
+    {
+      "ident": "UGURA",
+      "lat": -32.590278,
+      "lon": -53.322778,
+      "route": "A309"
+    },
+    {
+      "ident": "UMRUD",
+      "lat": -31.442222,
+      "lon": -54.644722,
+      "route": "UN741"
+    },
+    {
+      "ident": "URURI",
+      "lat": -31.302778,
+      "lon": -55.123889,
+      "route": "UM534"
+    },
+    {
+      "ident": "UTNAR",
+      "lat": -30.911931,
+      "lon": -55.254914,
+      "route": "SURV IAC RNP RWY 23"
+    },
+    {
+      "ident": "VANUD",
+      "lat": -30.845089,
+      "lon": -55.341503,
+      "route": "SURV IAC RNP RWY 23"
+    },
+    {
+      "ident": "VUDUP",
+      "lat": -32.981667,
+      "lon": -56.338333,
+      "route": "UM402 UN741"
+    },
+    {
+      "ident": "VUKAS",
+      "lat": -34.336944,
+      "lon": -56.110278,
+      "route": "UM402"
+    },
+    {
+      "ident": "XUXIP",
+      "lat": -30.782844,
+      "lon": -55.276972,
+      "route": "SURV IAC RNP RWY 23"
+    }
+  ],
+  "surface_lights": [
+    {
+      "name": "Adami TWR",
+      "type": "ABn",
+      "lat": -34.783333,
+      "lon": -56.266667,
+      "intensity": "W 1000",
+      "characteristics": "Gp Flg (WGW)",
+      "hours": "HN IMC"
+    },
+    {
+      "name": "Cabo Polonio",
+      "type": "Marítima",
+      "lat": -34.4,
+      "lon": -53.783333,
+      "intensity": "290.600",
+      "characteristics": "Flg W",
+      "hours": "HN"
+    },
+    {
+      "name": "Cabo Santa María",
+      "type": "Marítima",
+      "lat": -34.666667,
+      "lon": -54.15,
+      "intensity": "480.000",
+      "characteristics": "Flg W ev 60 sec W F",
+      "hours": "HN"
+    },
+    {
+      "name": "Capitán Curbelo TWR",
+      "type": "ABn",
+      "lat": -34.85,
+      "lon": -55.1,
+      "intensity": "300",
+      "characteristics": "Gp Flg W G ev 5 sec",
+      "hours": "HN IMC"
+    },
+    {
+      "name": "Carrasco Edificio Terminal",
+      "type": "ABn",
+      "lat": -34.75,
+      "lon": -56.033333,
+      "intensity": "W 880",
+      "characteristics": "Gp Flg W G W ev 8 sec",
+      "hours": "HN IMC"
+    },
+    {
+      "name": "Cerro Montevideo",
+      "type": "Marítima",
+      "lat": -34.883333,
+      "lon": -56.266667,
+      "intensity": "480.000",
+      "characteristics": "Gp Flg W ev 10 sec 3 Flg",
+      "hours": "HN"
+    },
+    {
+      "name": "Colonia del Sacramento",
+      "type": "Marítima",
+      "lat": -34.466667,
+      "lon": -57.866667,
+      "intensity": "620",
+      "characteristics": "Flg R ev 9 sec",
+      "hours": "HN"
+    },
+    {
+      "name": "Farallón",
+      "type": "Marítima",
+      "lat": -34.466667,
+      "lon": -57.933333,
+      "intensity": "1.300",
+      "characteristics": "Gp Flg W ev 10 sec 2 Flg",
+      "hours": "HN"
+    },
+    {
+      "name": "Isla de Flores",
+      "type": "Marítima",
+      "lat": -34.95,
+      "lon": -55.933333,
+      "intensity": "200.000",
+      "characteristics": "Gp Flg W ev 16 sec 2 Flg",
+      "hours": "HN"
+    },
+    {
+      "name": "Isla de Lobos",
+      "type": "Marítima",
+      "lat": -35.033333,
+      "lon": -54.883333,
+      "intensity": "1.084.800",
+      "characteristics": "Flg W ev 5 sec / F R al SE",
+      "hours": "HN"
+    },
+    {
+      "name": "La Panela",
+      "type": "Marítima",
+      "lat": -34.916667,
+      "lon": -56.45,
+      "intensity": "600",
+      "characteristics": "Gp Flg W ev 10 sec",
+      "hours": "HN"
+    },
+    {
+      "name": "Punta Brava",
+      "type": "Marítima",
+      "lat": -34.933333,
+      "lon": -56.166667,
+      "intensity": "14.400",
+      "characteristics": "Flg W ev 10 sec",
+      "hours": "HN"
+    },
+    {
+      "name": "Punta del Este",
+      "type": "Marítima",
+      "lat": -34.966667,
+      "lon": -54.95,
+      "intensity": "43.000",
+      "characteristics": "Flg W ev 8 sec",
+      "hours": "HN"
+    },
+    {
+      "name": "Punta José Ignacio",
+      "type": "Marítima",
+      "lat": -34.85,
+      "lon": -54.633333,
+      "intensity": "1.150",
+      "characteristics": "Flg W ev 2 sec",
+      "hours": "HN"
+    },
+    {
+      "name": "Punta Palmar",
+      "type": "Marítima",
+      "lat": -34.066667,
+      "lon": -53.55,
+      "intensity": "1.150",
+      "characteristics": "Flg W ev 6 sec",
+      "hours": "HN"
+    }
+  ],
+  "airspaces": [
+    {
+      "name": "ARTIGAS FIZ",
+      "type": "FIZ",
+      "class": "G",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -56.5081,
+        -30.4008
+      ],
+      "radius_nm": 10
+    },
+    {
+      "name": "CARMELO ATZ",
+      "type": "ATZ",
+      "class": "G",
+      "lower": "GND",
+      "upper": "450 M",
+      "center": [
+        -58.3253,
+        -33.9656
+      ],
+      "radius_nm": 4
+    },
+    {
+      "name": "COLONIA CTR",
+      "type": "CTR",
+      "class": "C",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -57.7706,
+        -34.4564
+      ],
+      "radius_nm": 10
+    },
+    {
+      "name": "COLONIA ATZ",
+      "type": "ATZ",
+      "class": "C",
+      "lower": "GND",
+      "upper": "450 M",
+      "center": [
+        -57.7706,
+        -34.4564
+      ],
+      "radius_nm": 4
+    },
+    {
+      "name": "DURAZNO TMA",
+      "type": "TMA",
+      "class": "C",
+      "lower": "600 M",
+      "upper": "FL 195",
+      "center": [
+        -56.4992,
+        -33.3589
+      ],
+      "radius_nm": 30
+    },
+    {
+      "name": "DURAZNO CTR",
+      "type": "CTR",
+      "class": "C",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -56.4992,
+        -33.3589
+      ],
+      "radius_nm": 15
+    },
+    {
+      "name": "DURAZNO ATZ",
+      "type": "ATZ",
+      "class": "C",
+      "lower": "GND",
+      "upper": "600 M",
+      "center": [
+        -56.4992,
+        -33.3589
+      ],
+      "radius_nm": 8
+    },
+    {
+      "name": "CURBELO CTR",
+      "type": "CTR",
+      "class": "C",
+      "lower": "SFC",
+      "upper": "FL 035",
+      "center": [
+        -55.0942,
+        -34.855
+      ],
+      "radius_nm": 15
+    },
+    {
+      "name": "CURBELO ATZ",
+      "type": "ATZ",
+      "class": "C",
+      "lower": "SFC",
+      "upper": "600 M",
+      "center": [
+        -55.0942,
+        -34.855
+      ],
+      "radius_nm": 8
+    },
+    {
+      "name": "MELO FIZ",
+      "type": "FIZ",
+      "class": "G",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -54.2167,
+        -32.3378
+      ],
+      "radius_nm": 10
+    },
+    {
+      "name": "CARRASCO TMA",
+      "type": "TMA",
+      "class": "G (GND-600M) / C (600M-FL195) / A (FL195-FL245)",
+      "lower": "GND",
+      "upper": "FL 245",
+      "geometry_type": "polygon_with_arcs",
+      "vertices": [
+        [
+          -56.883889,
+          -34.982778
+        ],
+        [
+          -56.533333,
+          -34.55
+        ],
+        [
+          -56.0,
+          -34.333333
+        ],
+        [
+          -55.096111,
+          -34.3575
+        ],
+        [
+          -54.15,
+          -34.866667
+        ],
+        [
+          -54.483333,
+          -36.166667
+        ],
+        [
+          -56.883333,
+          -34.983333
+        ]
+      ]
+    },
+    {
+      "name": "CARRASCO CTR",
+      "type": "CTR",
+      "class": "C",
+      "lower": "SFC",
+      "upper": "FL 035",
+      "center": [
+        -56.025139,
+        -34.832722
+      ],
+      "radius_nm": 15,
+      "remarks": "Exceptuando ZOM 5 si está activada"
+    },
+    {
+      "name": "CARRASCO ATZ",
+      "type": "ATZ",
+      "class": "C",
+      "lower": "SFC",
+      "upper": "600 M",
+      "center": [
+        -56.025139,
+        -34.832722
+      ],
+      "radius_nm": 8
+    },
+    {
+      "name": "ADAMI ATZ",
+      "type": "ATZ",
+      "class": "C (10:00-22:00 UTC) / G",
+      "lower": "GND",
+      "upper": "450 M",
+      "center": [
+        -56.263028,
+        -34.789528
+      ],
+      "radius_nm": 8,
+      "arc_from": [
+        -56.167222,
+        -34.897222
+      ],
+      "arc_to": [
+        -56.121111,
+        -34.725278
+      ]
+    },
+    {
+      "name": "PUNTA DEL ESTE ATZ",
+      "type": "ATZ",
+      "class": "G",
+      "lower": "GND",
+      "upper": "300 M",
+      "center": [
+        -54.919167,
+        -34.913056
+      ],
+      "radius_nm": 3
+    },
+    {
+      "name": "PAYSANDÚ FIZ",
+      "type": "FIZ",
+      "class": "G",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -58.062222,
+        -32.364167
+      ],
+      "radius_nm": 10,
+      "remarks": "Limitado al W por FIR Montevideo"
+    },
+    {
+      "name": "RIVERA CTR",
+      "type": "CTR",
+      "class": "C (10:00-22:00 UTC) / G",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -55.473333,
+        -30.969444
+      ],
+      "radius_nm": 15,
+      "remarks": "Limitado al NE por FIR Curitiba"
+    },
+    {
+      "name": "RIVERA ATZ",
+      "type": "ATZ",
+      "class": "C (10:00-22:00 UTC) / G",
+      "lower": "GND",
+      "upper": "450 M",
+      "center": [
+        -55.473333,
+        -30.969444
+      ],
+      "radius_nm": 4
+    },
+    {
+      "name": "SALTO CTR",
+      "type": "CTR",
+      "class": "C (10:00-22:00 UTC) / G",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -57.984167,
+        -31.434722
+      ],
+      "radius_nm": 10,
+      "remarks": "Limitado al W por FIR Ezeiza"
+    },
+    {
+      "name": "SALTO ATZ",
+      "type": "ATZ",
+      "class": "C (10:00-22:00 UTC) / G",
+      "lower": "GND",
+      "upper": "450 M",
+      "center": [
+        -57.984167,
+        -31.434722
+      ],
+      "radius_nm": 4,
+      "remarks": "Limitado al W por FIR Ezeiza"
+    },
+    {
+      "name": "TACUAREMBÓ FIZ",
+      "type": "FIZ",
+      "class": "G",
+      "lower": "GND",
+      "upper": "FL 055",
+      "center": [
+        -55.923889,
+        -31.750278
+      ],
+      "radius_nm": 10
+    }
+  ]
+}

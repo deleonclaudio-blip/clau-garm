@@ -1,0 +1,51 @@
+{
+  "version": 8,
+  "name": "clau-garm VFR",
+  "metadata": {
+    "note": "Overlay style for the aeronautical layers only. The BASEMAP source is intentionally absent: you must add a background tile source (see data/README.md — this is the decision still owed). Colours mirror replica/design/tokens.json map.* tokens and follow aviation convention, not Garmin."
+  },
+  "sources": {
+    "aip-airspaces": { "type": "geojson", "data": "dist/airspaces.geojson" },
+    "aip-runways": { "type": "geojson", "data": "dist/runways.geojson" },
+    "aip-points": { "type": "geojson", "data": "dist/points_nav.geojson" }
+  },
+  "sprite": "dist/sprites/aip",
+  "glyphs": "{fontstack}/{range}.pbf",
+  "layers": [
+    { "id": "bg", "type": "background", "paint": { "background-color": "#0b0f14" } },
+    {
+      "id": "airspace-fill", "type": "fill", "source": "aip-airspaces",
+      "paint": { "fill-color": "#60a5fa", "fill-opacity": 0.08 }
+    },
+    {
+      "id": "airspace-line", "type": "line", "source": "aip-airspaces",
+      "paint": { "line-color": "#60a5fa", "line-width": 1.2, "line-opacity": 0.8 }
+    },
+    {
+      "id": "airspace-label", "type": "symbol", "source": "aip-airspaces",
+      "layout": { "text-field": ["get", "name"], "text-size": 11,
+        "text-font": ["Noto Sans Regular"], "symbol-placement": "line" },
+      "paint": { "text-color": "#9aa7b4", "text-halo-color": "#0b0f14", "text-halo-width": 1 }
+    },
+    {
+      "id": "runways", "type": "line", "source": "aip-runways",
+      "paint": { "line-color": "#e8edf2", "line-width": 2 }
+    },
+    {
+      "id": "points", "type": "circle", "source": "aip-points",
+      "paint": {
+        "circle-radius": 4,
+        "circle-color": ["match", ["get", "layer_type"],
+          "aerodrome", "#e8edf2", "navaid", "#4ade80", "#9aa7b4"],
+        "circle-stroke-color": "#0b0f14", "circle-stroke-width": 1
+      }
+    },
+    {
+      "id": "point-labels", "type": "symbol", "source": "aip-points",
+      "layout": { "text-field": ["get", "ident"], "text-size": 11,
+        "text-font": ["Noto Sans Regular"], "text-offset": [0, 1.1],
+        "text-anchor": "top" },
+      "paint": { "text-color": "#e8edf2", "text-halo-color": "#0b0f14", "text-halo-width": 1 }
+    }
+  ]
+}

@@ -52,3 +52,30 @@ read the navlog.
 `/replica-backend` to replace the fake data layer (Supabase + on-device SQLite,
 the pack pipeline), but only once the data-licence question is answered — it
 decides what the backend can legally serve.
+
+## 2026-11-12 · Real Uruguay data pack
+
+Integrated a structured AIP Uruguay dataset (user-supplied) as the real data
+pipeline, replacing the 7-airport seed.
+
+**Fixed two bugs in the supplied pipeline** (it did not run as given):
+- an IndentationError on the GeoJSON-writing loop;
+- `conn.execute("ANALYZE; VACUUM;")` — SQLite runs one statement per call, so
+  it crashed before writing any GeoJSON.
+
+**Fixed data:** a light's longitude (-50.03 → -56.03, a digit typo) and the
+stale waypoint count in metadata (91 → 106, actual).
+
+**Added:** an `airspaces` SQL table with structured limits (value+unit+ref) and
+the verbatim class string, so airspace is queryable, not only in GeoJSON; a
+`validate.py` (counts, coords, referential integrity, cascade, airspace
+geometry and radii — 0 failures); a MapLibre overlay style; an AIRAC Makefile;
+a reproducible `gen_app_data.py`; and `src/data/pack.ts`, the device SQLite
+query service (type-checks; needs a device to run).
+
+The app now plans against all 24 aerodromes + navaids + waypoints. Whole app
+type-checks; domain tests pass against the real data (SUMU→SUAA→SUDU 98.7 nm).
+
+**Still fake:** the in-app data layer (Supabase/SQLite swap pending), and the
+map is still the schematic — the real MapLibre map needs a basemap source and a
+device. See data/README.md "What you still need to add".
