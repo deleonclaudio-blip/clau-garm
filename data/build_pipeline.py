@@ -68,24 +68,45 @@ def build_airspace_polygon(item, steps=72):
     return [ring]
 
 
+M_TO_FT = 3.28084
+
+
 def parse_limit(text):
-    """'GND'/'SFC' -> (0,'ft','gnd'); 'FL 055' -> (55,'fl','std');
-    '600 M' -> (600,'m','msl'); '1500 FT' -> (1500,'ft','msl').
-    Returns (value, unit, ref). ref for metric/feet defaults to 'msl' (AIP
-    altitudes are AMSL unless stated); verify height-referenced limits."""
+    """'GND'/'SFC' -> (0,'ft','gnd',0); 'FL 055' -> (55,'fl','std',5500);
+    '600 M' -> (600,'m','msl',1968.5); '1500 FT' -> (1500,'ft','msl',1500).
+    Returns (value, unit, ref, ft). ft is the converted envelope value used for
+    the vertical filter. Metric/feet default ref 'msl' (AIP altitudes are AMSL
+    unless stated); verify height-referenced limits against the chart."""
     t = (text or "").strip().upper()
     if t in ("GND", "SFC", ""):
-        return (0.0, "ft", "gnd")
+        return (0.0, "ft", "gnd", 0.0)
     m = re.match(r"FL\s*0*(\d+)", t)
     if m:
-        return (float(m.group(1)), "fl", "std")
+        v = float(m.group(1))
+        return (v, "fl", "std", v * 100.0)
     m = re.match(r"([\d.]+)\s*M\b", t)
     if m:
-        return (float(m.group(1)), "m", "msl")
+        v = float(m.group(1))
+        return (v, "m", "msl", round(v * M_TO_FT, 1))
     m = re.match(r"([\d.]+)\s*FT\b", t)
     if m:
-        return (float(m.group(1)), "ft", "msl")
-    return (None, None, t.lower())  # unknown: keep the raw text in ref
+        v = float(m.group(1))
+        return (v, "ft", "msl", v)
+    return (None, None, t.lower(), None)  # unknown: keep the raw text in ref
+
+
+def layers_of(a):
+    """Explicit layers if present, else a single layer from class/lower/upper."""
+    if a.get("layers"):
+        return a["layers"]
+    return [{"class": a.get("class"), "lower": a.get("lower"), "upper": a.get("upper"),
+             "schedule": a.get("schedule")}]
+
+
+def bbox_of(coords):
+    lons = [p[0] for ring in coords for p in ring]
+    lats = [p[1] for ring in coords for p in ring]
+    return min(lats), max(lats), min(lons), max(lons)
 
 
 def main():
@@ -135,23 +156,34 @@ def main():
              s["hours"]),
         )
 
-    # Airspaces: build geometry once, store it in SQL and emit GeoJSON from the same rings.
+    # Airspaces: parent polygon + R-Tree bbox + one row per vertical layer.
     airspace_features = []
     for a in data["airspaces"]:
         coords = build_airspace_polygon(a)
-        lv, lu, lr = parse_limit(a.get("lower"))
-        uv, uu, ur = parse_limit(a.get("upper"))
-        center = a.get("center") or [None, None]
-        conn.execute(
-            "INSERT INTO airspaces (name,type,class_raw,lower_val,lower_unit,lower_ref,"
-            "upper_val,upper_unit,upper_ref,center_lat,center_lon,radius_nm,geom) "
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            (a["name"], a.get("type"), a.get("class"), lv, lu, lr, uv, uu, ur,
-             center[1], center[0], a.get("radius_nm"), json.dumps(coords)),
+        min_lat, max_lat, min_lon, max_lon = bbox_of(coords)
+        cur = conn.execute(
+            "INSERT INTO airspaces (name,type,min_lat,max_lat,min_lon,max_lon,geometry_json)"
+            " VALUES (?,?,?,?,?,?,?)",
+            (a["name"], a.get("type"), min_lat, max_lat, min_lon, max_lon, json.dumps(coords)),
         )
+        aid = cur.lastrowid
+        conn.execute(
+            "INSERT INTO airspace_rtree (id,min_lat,max_lat,min_lon,max_lon) VALUES (?,?,?,?,?)",
+            (aid, min_lat, max_lat, min_lon, max_lon),
+        )
+        for lyr in layers_of(a):
+            lv, lu, lr, lft = parse_limit(lyr.get("lower"))
+            uv, uu, ur, uft = parse_limit(lyr.get("upper"))
+            conn.execute(
+                "INSERT INTO airspace_layers (airspace_id,airspace_class,"
+                "lower_val,lower_unit,lower_ref,lower_ft,"
+                "upper_val,upper_unit,upper_ref,upper_ft,schedule) "
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+                (aid, lyr.get("class"), lv, lu, lr, lft, uv, uu, ur, uft, lyr.get("schedule")),
+            )
         props = {k: v for k, v in a.items()
                  if k not in ("center", "radius_nm", "vertices", "geometry_type",
-                              "arc_from", "arc_to")}
+                              "arc_from", "arc_to", "layers")}
         airspace_features.append({
             "type": "Feature", "properties": props,
             "geometry": {"type": "Polygon", "coordinates": coords},

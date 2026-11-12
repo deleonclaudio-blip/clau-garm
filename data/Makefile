@@ -10,6 +10,7 @@ build:
 
 validate: build
 	$(PY) validate.py
+	$(PY) test_spatial.py
 
 # Regenerate the app's in-memory data module from the same JSON.
 app:

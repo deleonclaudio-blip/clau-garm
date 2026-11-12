@@ -40,6 +40,21 @@ def main():
     tables = {"aerodromes": "aerodromes", "runways": "runways", "frequencies": "frequencies",
               "navaids": "navaids", "waypoints": "waypoints", "surface_lights": "surface_lights",
               "airspaces": "airspaces"}
+    # airspace_rtree must mirror airspaces; every airspace needs >=1 layer.
+    n_as = conn.execute("select count(*) from airspaces").fetchone()[0]
+    n_rt = conn.execute("select count(*) from airspace_rtree").fetchone()[0]
+    if n_as != n_rt:
+        failures.append(f"airspace_rtree has {n_rt} rows but airspaces has {n_as}")
+    orphan = conn.execute(
+        "select count(*) from airspaces a where not exists "
+        "(select 1 from airspace_layers l where l.airspace_id=a.id)").fetchone()[0]
+    if orphan:
+        failures.append(f"{orphan} airspace(s) with no layer")
+    tma = conn.execute(
+        "select count(*) from airspace_layers l join airspaces a on a.id=l.airspace_id "
+        "where a.name='CARRASCO TMA'").fetchone()[0]
+    if tma != 3:
+        failures.append(f"CARRASCO TMA should have 3 layers, has {tma}")
     for key, tbl in tables.items():
         n_json = len(data[key])
         n_db = conn.execute(f"select count(*) from {tbl}").fetchone()[0]
@@ -77,6 +92,19 @@ def main():
     if left != 0:
         failures.append("cascade delete of SUMU left child rows")
     conn.rollback()
+
+    # 4b. R-Tree bbox actually contains its airspace geometry.
+    gj_tmp = json.loads((OUT / "airspaces.geojson").read_text(encoding="utf-8"))
+    for f in gj_tmp["features"]:
+        name = f["properties"]["name"]
+        row = conn.execute("select min_lat,max_lat,min_lon,max_lon from airspaces where name=?",
+                           (name,)).fetchone()
+        if row:
+            mnla, mxla, mnlo, mxlo = row
+            for lon, lat in f["geometry"]["coordinates"][0]:
+                if not (mnla - 1e-6 <= lat <= mxla + 1e-6 and mnlo - 1e-6 <= lon <= mxlo + 1e-6):
+                    failures.append(f"{name}: vertex outside stored bbox")
+                    break
 
     # 5. Airspace geometry: closed rings, non-zero area, correct coordinate order,
     #    and circles/arcs match their declared radius.

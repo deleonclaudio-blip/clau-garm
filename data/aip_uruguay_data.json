@@ -1778,6 +1778,23 @@
           -56.883333,
           -34.983333
         ]
+      ],
+      "layers": [
+        {
+          "class": "G",
+          "lower": "GND",
+          "upper": "600 M"
+        },
+        {
+          "class": "C",
+          "lower": "600 M",
+          "upper": "FL 195"
+        },
+        {
+          "class": "A",
+          "lower": "FL 195",
+          "upper": "FL 245"
+        }
       ]
     },
     {
@@ -1823,7 +1840,8 @@
       "arc_to": [
         -56.121111,
         -34.725278
-      ]
+      ],
+      "schedule": "10:00-22:00 UTC"
     },
     {
       "name": "PUNTA DEL ESTE ATZ",
@@ -1861,7 +1879,8 @@
         -30.969444
       ],
       "radius_nm": 15,
-      "remarks": "Limitado al NE por FIR Curitiba"
+      "remarks": "Limitado al NE por FIR Curitiba",
+      "schedule": "10:00-22:00 UTC"
     },
     {
       "name": "RIVERA ATZ",
@@ -1873,7 +1892,8 @@
         -55.473333,
         -30.969444
       ],
-      "radius_nm": 4
+      "radius_nm": 4,
+      "schedule": "10:00-22:00 UTC"
     },
     {
       "name": "SALTO CTR",
@@ -1886,7 +1906,8 @@
         -31.434722
       ],
       "radius_nm": 10,
-      "remarks": "Limitado al W por FIR Ezeiza"
+      "remarks": "Limitado al W por FIR Ezeiza",
+      "schedule": "10:00-22:00 UTC"
     },
     {
       "name": "SALTO ATZ",
@@ -1899,7 +1920,8 @@
         -31.434722
       ],
       "radius_nm": 4,
-      "remarks": "Limitado al W por FIR Ezeiza"
+      "remarks": "Limitado al W por FIR Ezeiza",
+      "schedule": "10:00-22:00 UTC"
     },
     {
       "name": "TACUAREMBÓ FIZ",

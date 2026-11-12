@@ -8,21 +8,14 @@
 
 import type { SQLiteDatabase } from "expo-sqlite";
 import type { Airport, Waypoint, WaypointType } from "../domain/types";
+import {
+  airspacesAtPosition,
+  type AirspaceHit,
+  type AirspaceLayer,
+  type AirspacePolygon,
+} from "../domain/airspace";
 
-export interface AirspaceLimit {
-  value: number | null;
-  unit: "ft" | "m" | "fl" | null;
-  ref: string | null; // gnd | msl | std | raw
-}
-
-export interface Airspace {
-  name: string;
-  type: string | null;
-  classRaw: string | null; // verbatim; may describe several layers
-  lower: AirspaceLimit;
-  upper: AirspaceLimit;
-  geom: unknown; // GeoJSON Polygon coordinates
-}
+export type { AirspaceHit } from "../domain/airspace";
 
 function rowToAirport(r: any): Airport {
   return {
@@ -77,17 +70,39 @@ export class RegionPack {
     }));
   }
 
-  /** Airspaces whose bounding box contains the point — caller does the precise
-   * point-in-polygon test on geom. Cheap pre-filter for "what's around me". */
-  async airspaces(): Promise<Airspace[]> {
-    const rows = await this.db.getAllAsync<any>("SELECT * FROM airspaces");
-    return rows.map((r) => ({
-      name: r.name,
-      type: r.type,
-      classRaw: r.class_raw,
-      lower: { value: r.lower_val, unit: r.lower_unit, ref: r.lower_ref },
-      upper: { value: r.upper_val, unit: r.upper_unit, ref: r.upper_ref },
-      geom: JSON.parse(r.geom),
+  /** 3D query: which airspace and class the aircraft is in at (lat, lon, altFt),
+   * and the layers just above/below. R-Tree bbox pre-filter in SQL, then exact
+   * point-in-polygon + vertical filter in pure code. */
+  async getAirspacesAtPosition(
+    lat: number, lon: number, altitudeFt: number,
+  ): Promise<AirspaceHit[]> {
+    const rows = await this.db.getAllAsync<any>(
+      `SELECT a.id, a.name, a.type, a.geometry_json
+         FROM airspace_rtree r JOIN airspaces a ON a.id = r.id
+        WHERE ? BETWEEN r.min_lat AND r.max_lat
+          AND ? BETWEEN r.min_lon AND r.max_lon`,
+      lat, lon,
+    );
+    if (rows.length === 0) return [];
+    const ids = rows.map((r) => r.id);
+    const placeholders = ids.map(() => "?").join(",");
+    const layerRows = await this.db.getAllAsync<any>(
+      `SELECT airspace_id, airspace_class, lower_ft, upper_ft, schedule
+         FROM airspace_layers WHERE airspace_id IN (${placeholders}) ORDER BY lower_ft`,
+      ...ids,
+    );
+    const byParent = new Map<number, AirspaceLayer[]>();
+    for (const l of layerRows) {
+      const list = byParent.get(l.airspace_id) ?? [];
+      list.push({ airspaceClass: l.airspace_class, lowerFt: l.lower_ft,
+        upperFt: l.upper_ft, schedule: l.schedule });
+      byParent.set(l.airspace_id, list);
+    }
+    const candidates: AirspacePolygon[] = rows.map((r) => ({
+      name: r.name, type: r.type,
+      geometry: JSON.parse(r.geometry_json),
+      layers: byParent.get(r.id) ?? [],
     }));
+    return airspacesAtPosition(candidates, lat, lon, altitudeFt);
   }
 }

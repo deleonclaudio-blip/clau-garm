@@ -79,3 +79,26 @@ type-checks; domain tests pass against the real data (SUMU→SUAA→SUDU 98.7 nm
 **Still fake:** the in-app data layer (Supabase/SQLite swap pending), and the
 map is still the schematic — the real MapLibre map needs a basemap source and a
 device. See data/README.md "What you still need to add".
+
+## 2026-11-12 · 3D airspace model
+
+Resolved the three airspace design gaps.
+
+- **Relational model + vertical strata.** `airspaces` (polygon + bbox) with a
+  child `airspace_layers` (class, lower/upper as val+unit+ref plus a converted
+  `_ft`, schedule), and an `airspace_rtree` spatial index. CARRASCO TMA split
+  into its real strata: G (GND–600 M), C (600 M–FL195), A (FL195–FL245).
+- **Arc geometry** for arc_from/arc_to airspaces (ADAMI ATZ) kept as the 8 NM
+  outer arc closed by the chord — matching the CTR Carrasco cut-out.
+- **`getAirspacesAtPosition(lat, lon, altFt)`** in pack.ts: R-Tree bbox
+  pre-filter → ray-casting point-in-polygon (`src/domain/airspace.ts`, pure and
+  tested) → vertical layer filter, returning the class inside and the layers
+  above/below.
+
+Tests (all pass): `data/test_spatial.py` against the real SQLite and a TS unit
+test against the GeoJSON both confirm CARRASCO TMA → G/C/A at 1000/5000/21000 ft
+and ADAMI ATZ inside at 500 ft. `validate.py` extended (rtree mirrors airspaces,
+every airspace has a layer, TMA has 3, bbox contains geometry) — 0 failures.
+`make` now runs build + validate + spatial test. Whole app type-checks.
+
+Map base decided: Protomaps / OSM (PMTiles, offline) — MapLibre component next.

@@ -74,19 +74,35 @@ CREATE TABLE IF NOT EXISTS surface_lights (
     hours TEXT
 );
 
--- Airspace is now queryable in SQL (not only in GeoJSON). Limits are stored as
--- value + unit + reference so the metric/FL/feet mix is never coerced. The raw
--- class string is kept verbatim because layered classes (e.g. Carrasco TMA:
--- G/C/A by altitude) cannot be reduced to one value without losing meaning.
+-- Airspace is a parent polygon with one or more vertical layers. A single
+-- lateral shape (e.g. Carrasco TMA) can carry several classes stacked by
+-- altitude (G / C / A), so classes and limits live in the child table, never
+-- flattened onto the parent.
 CREATE TABLE IF NOT EXISTS airspaces (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    type TEXT,
-    class_raw TEXT,              -- verbatim; may describe several layers
-    lower_val REAL, lower_unit TEXT, lower_ref TEXT,   -- unit: ft|m|fl  ref: gnd|msl|std
-    upper_val REAL, upper_unit TEXT, upper_ref TEXT,
-    center_lat REAL, center_lon REAL, radius_nm REAL,
-    geom TEXT                    -- GeoJSON Polygon coordinates
+    type TEXT,                   -- TMA | CTR | ATZ | FIZ
+    min_lat REAL, max_lat REAL, min_lon REAL, max_lon REAL,  -- bbox, for the R-Tree
+    geometry_json TEXT NOT NULL  -- closed WGS84 polygon ring(s), [[ [lon,lat], ... ]]
+);
+
+-- One row per vertical stratum. *_val/_unit/_ref keep the published form; *_ft
+-- is the converted envelope used for the vertical filter (GND=0, FL*100,
+-- metres*3.28084). schedule is non-null when the class is time-limited.
+CREATE TABLE IF NOT EXISTS airspace_layers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    airspace_id INTEGER NOT NULL,
+    airspace_class TEXT,
+    lower_val REAL, lower_unit TEXT, lower_ref TEXT, lower_ft REAL,
+    upper_val REAL, upper_unit TEXT, upper_ref TEXT, upper_ft REAL,
+    schedule TEXT,
+    FOREIGN KEY (airspace_id) REFERENCES airspaces(id) ON DELETE CASCADE
+);
+
+-- Spatial index over airspace bounding boxes: the pre-filter before the exact
+-- point-in-polygon test. id matches airspaces.id.
+CREATE VIRTUAL TABLE IF NOT EXISTS airspace_rtree USING rtree(
+    id, min_lat, max_lat, min_lon, max_lon
 );
 
 CREATE VIRTUAL TABLE IF NOT EXISTS spatial_index USING rtree(
@@ -128,3 +144,4 @@ CREATE INDEX IF NOT EXISTS idx_frequencies_icao ON frequencies(icao);
 CREATE INDEX IF NOT EXISTS idx_navaids_coords ON navaids(lat, lon);
 CREATE INDEX IF NOT EXISTS idx_waypoints_coords ON waypoints(lat, lon);
 CREATE INDEX IF NOT EXISTS idx_airspaces_name ON airspaces(name);
+CREATE INDEX IF NOT EXISTS idx_airspace_layers_parent ON airspace_layers(airspace_id);

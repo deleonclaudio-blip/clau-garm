@@ -212,12 +212,19 @@ downloaded pack is a read-only attached DB:
 -- region pack (read-only, compiled by the pipeline, attached at runtime)
 CREATE TABLE airports (ident TEXT PRIMARY KEY, name TEXT, lat REAL, lon REAL,
   elevation_ft INTEGER, runways TEXT, frequencies TEXT, fuel TEXT);
-CREATE TABLE airspace (id TEXT PRIMARY KEY, name TEXT, type TEXT, class TEXT,
-  -- limits as value + unit + reference: Uruguay mixes FL, feet and METRES
-  -- (e.g. TMA Carrasco "600 m MSL", CTR Carrasco "FL35 / GND"). Store all three.
-  lower_val REAL, lower_unit TEXT, lower_ref TEXT,   -- unit: ft|m|fl  ref: msl|gnd|std
-  upper_val REAL, upper_unit TEXT, upper_ref TEXT,
-  geom TEXT);   -- GeoJSON
+-- Airspace is a parent polygon + layers (classes stacked by altitude). See the
+-- built schema in data/schema.sql; the 3D query lives in src/data/pack.ts
+-- (R-Tree bbox -> ray-casting point-in-polygon -> vertical layer filter).
+CREATE TABLE airspaces (id INTEGER PRIMARY KEY, name TEXT, type TEXT,
+  min_lat REAL, max_lat REAL, min_lon REAL, max_lon REAL,   -- bbox for airspace_rtree
+  geometry_json TEXT);
+CREATE TABLE airspace_layers (id INTEGER PRIMARY KEY, airspace_id INTEGER,
+  airspace_class TEXT,
+  -- limits as value + unit + reference (Uruguay mixes FL, feet and METRES),
+  -- plus *_ft, the converted envelope used for the vertical filter.
+  lower_val REAL, lower_unit TEXT, lower_ref TEXT, lower_ft REAL,
+  upper_val REAL, upper_unit TEXT, upper_ref TEXT, upper_ft REAL, schedule TEXT);
+CREATE VIRTUAL TABLE airspace_rtree USING rtree(id, min_lat, max_lat, min_lon, max_lon);
 CREATE TABLE navaids (ident TEXT PRIMARY KEY, type TEXT, lat REAL, lon REAL, freq TEXT);
 -- live weather cache (written by the app, TTL, never authoritative)
 CREATE TABLE wx_cache (station TEXT, product TEXT, issued_at TEXT, raw TEXT,
