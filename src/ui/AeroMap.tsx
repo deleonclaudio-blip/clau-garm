@@ -34,33 +34,40 @@ export interface AeroMapProps {
   route: Waypoint[];
   ownship: Ownship | null;
   northUp: boolean;
-  /** True once base_uruguay.pmtiles is present on the device. When false the
+  /** Absolute file URI of the local base_uruguay.pmtiles, or null. When null the
    * map draws the aeronautical layers over a neutral background, so they are
-   * testable before the basemap is downloaded. */
-  basemapAvailable?: boolean;
+   * testable before the basemap is installed. */
+  basemapUri?: string | null;
 }
 
 // Base style built in code so the basemap source is only referenced when the
-// PMTiles file exists; otherwise a clean neutral background (no broken tiles).
-function baseStyle(basemapAvailable: boolean) {
-  if (!basemapAvailable) {
-    return {
-      version: 8,
-      glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-      sources: {},
-      layers: [{ id: "bg", type: "background", paint: { "background-color": color.bg } }],
-    } as const;
+// PMTiles file is present; otherwise a clean neutral background (no broken
+// tiles). Layer names follow the PROTOMAPS schema (earth/water/roads/places),
+// not OpenMapTiles — the pmtiles from `make basemap` is a Protomaps build.
+function baseStyle(basemapUri: string | null) {
+  const glyphs = "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf";
+  const bg = { id: "bg", type: "background", paint: { "background-color": color.bg } };
+  if (!basemapUri) {
+    return { version: 8, glyphs, sources: {}, layers: [bg] } as const;
   }
   return {
     version: 8,
-    glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-    sources: { basemap: { type: "vector", url: "pmtiles://base_uruguay.pmtiles" } },
+    glyphs,
+    sources: { basemap: { type: "vector", url: `pmtiles://${basemapUri}` } },
     layers: [
-      { id: "bg", type: "background", paint: { "background-color": color.bg } },
+      bg,
+      { id: "earth", type: "fill", source: "basemap", "source-layer": "earth",
+        paint: { "fill-color": "#11181f" } },
       { id: "water", type: "fill", source: "basemap", "source-layer": "water",
         paint: { "fill-color": "#0e2233" } },
-      { id: "roads", type: "line", source: "basemap", "source-layer": "transportation",
+      { id: "landuse", type: "fill", source: "basemap", "source-layer": "landuse",
+        paint: { "fill-color": "#13202b", "fill-opacity": 0.5 } },
+      { id: "roads", type: "line", source: "basemap", "source-layer": "roads",
         paint: { "line-color": "#223042", "line-width": 0.6 } },
+      { id: "places", type: "symbol", source: "basemap", "source-layer": "places",
+        layout: { "text-field": ["get", "name"], "text-size": 11,
+          "text-font": ["Noto Sans Regular"] },
+        paint: { "text-color": "#5b6470", "text-halo-color": color.bg, "text-halo-width": 1 } },
     ],
   } as const;
 }
@@ -86,8 +93,8 @@ function ownshipFeature(o: Ownship | null): FeatureCollection {
   } as FeatureCollection;
 }
 
-export function AeroMap({ route, ownship, northUp, basemapAvailable = false }: AeroMapProps) {
-  const style = useMemo(() => baseStyle(basemapAvailable), [basemapAvailable]);
+export function AeroMap({ route, ownship, northUp, basemapUri = null }: AeroMapProps) {
+  const style = useMemo(() => baseStyle(basemapUri), [basemapUri]);
   const center: [number, number] = ownship
     ? [ownship.lon, ownship.lat]
     : route[0] ? [route[0].lon, route[0].lat] : [-56.03, -34.83]; // Carrasco

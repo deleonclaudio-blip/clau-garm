@@ -36,11 +36,19 @@ non-commercial build it is usable now.
 
 ## What you still need to add (not code)
 
-1. **A basemap.** `maplibre-style.json` draws only the aeronautical overlay; it
-   has no background. Choose a tile provider and add a source:
-   - MapTiler / Stadia / Mapbox — polished, needs an API key and has a cost.
-   - OpenStreetMap raster or Protomaps (PMTiles) — free, self-hosted, more setup.
-   This is the main open decision for the map to look like anything.
+1. **The base map (chosen: Protomaps PMTiles, offline).**
+   - Generate it: `cd data && make basemap` → writes `assets/base_uruguay.pmtiles`
+     (the bbox is -58.6,-35.5,-53.0,-30.0, z0-12; lower UY_MAXZOOM to shrink it).
+   - Install it on the device: the app loads the PMTiles from its own document
+     directory, not from the bundle. Copy the file to the tablet (any folder),
+     open the app's Fly screen and tap **Import base map** (one time; it is
+     copied into app storage and used offline thereafter). The map falls back to
+     a neutral background until then, so the aeronautical layers work immediately.
+   - MapLibre Native (11.x Android / 6.x iOS, as pinned by the RN wrapper)
+     supports `pmtiles://` natively; the source URL is `pmtiles://<absolute file uri>`.
+   - The base style uses the **Protomaps** layer schema (earth/water/landuse/
+     roads/places). Place labels need a glyph server; `glyphs` currently points
+     at a public demo font server, so for fully offline labels self-host glyphs.
 2. **An Android device or emulator** to run `expo run:android`, see the map and
    capture screenshots. Cannot be done in CI.
 3. **Glyphs** for MapLibre text labels. The `glyphs` URL points at a public

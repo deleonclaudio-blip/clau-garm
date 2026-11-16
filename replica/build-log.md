@@ -138,3 +138,18 @@ green. **Not run here** — MapLibre/expo-location/PMTiles need a device:
 
 Whole app type-checks; data chain + spatial test green. Ready for the device
 build: `cd data && make basemap`, then `npx expo prebuild` and `expo run:android`.
+
+## 2026-11-16 · Fix the PMTiles basemap (device test feedback)
+
+On the tablet the aero layers drew correctly but the basemap fell back. Three
+causes, all fixed:
+- the source URL was a bare relative name (`pmtiles://base_uruguay.pmtiles`) —
+  MapLibre had no file to resolve. Now `pmtiles://<absolute file uri>`.
+- availability was a manual flag that nothing set. Now `useBasemap` resolves the
+  real file in the app document directory and the map reacts to it.
+- the base style used OpenMapTiles layer names; the pmtiles is a Protomaps build,
+  so switched to earth/water/landuse/roads/places.
+
+`useBasemap` + an "Import base map" button copy the generated PMTiles into app
+storage once (offline thereafter); the neutral fallback stays until then. Confirmed
+MapLibre Native 11.12.1 (Android) / 6.17.1 (iOS) support pmtiles://. App type-checks.
