@@ -38,14 +38,19 @@ export interface AeroMapProps {
    * map draws the aeronautical layers over a neutral background, so they are
    * testable before the basemap is installed. */
   basemapUri?: string | null;
+  /** file:// glyphs template (offline Noto Sans). Falls back to the demo font
+   * server when null (online only). */
+  glyphsUrl?: string | null;
 }
+
+const DEMO_GLYPHS = "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf";
 
 // Base style built in code so the basemap source is only referenced when the
 // PMTiles file is present; otherwise a clean neutral background (no broken
 // tiles). Layer names follow the PROTOMAPS schema (earth/water/roads/places),
 // not OpenMapTiles — the pmtiles from `make basemap` is a Protomaps build.
-function baseStyle(basemapUri: string | null) {
-  const glyphs = "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf";
+function baseStyle(basemapUri: string | null, glyphsUrl: string | null) {
+  const glyphs = glyphsUrl ?? DEMO_GLYPHS;
   const bg = { id: "bg", type: "background", paint: { "background-color": color.bg } };
   if (!basemapUri) {
     return { version: 8, glyphs, sources: {}, layers: [bg] } as const;
@@ -66,7 +71,7 @@ function baseStyle(basemapUri: string | null) {
         paint: { "line-color": "#223042", "line-width": 0.6 } },
       { id: "places", type: "symbol", source: "basemap", "source-layer": "places",
         layout: { "text-field": ["get", "name"], "text-size": 11,
-          "text-font": ["Noto Sans Regular"] },
+          "text-font": ["NotoSans"] },
         paint: { "text-color": "#5b6470", "text-halo-color": color.bg, "text-halo-width": 1 } },
     ],
   } as const;
@@ -93,8 +98,8 @@ function ownshipFeature(o: Ownship | null): FeatureCollection {
   } as FeatureCollection;
 }
 
-export function AeroMap({ route, ownship, northUp, basemapUri = null }: AeroMapProps) {
-  const style = useMemo(() => baseStyle(basemapUri), [basemapUri]);
+export function AeroMap({ route, ownship, northUp, basemapUri = null, glyphsUrl = null }: AeroMapProps) {
+  const style = useMemo(() => baseStyle(basemapUri, glyphsUrl), [basemapUri, glyphsUrl]);
   const center: [number, number] = ownship
     ? [ownship.lon, ownship.lat]
     : route[0] ? [route[0].lon, route[0].lat] : [-56.03, -34.83]; // Carrasco
@@ -117,7 +122,7 @@ export function AeroMap({ route, ownship, northUp, basemapUri = null }: AeroMapP
           <FillLayer id="as-fill" style={{ fillColor: mapColor.airspace, fillOpacity: 0.08 }} />
           <LineLayer id="as-line" style={{ lineColor: mapColor.airspace, lineWidth: 1.2, lineOpacity: 0.8 }} />
           <SymbolLayer id="as-label" style={{
-            textField: ["get", "name"], textSize: 11, symbolPlacement: "line",
+            textField: ["get", "name"], textFont: ["NotoSans"], textSize: 11, symbolPlacement: "line",
             textColor: color.textMuted, textHaloColor: color.bg, textHaloWidth: 1,
           }} />
         </ShapeSource>
@@ -131,7 +136,7 @@ export function AeroMap({ route, ownship, northUp, basemapUri = null }: AeroMapP
         <ShapeSource id="points" shape={pointsGeo as FeatureCollection}>
           <SymbolLayer id="pt-sym" style={{
             iconImage: ["get", "sym"], iconSize: 0.9, iconAllowOverlap: true,
-            textField: ["get", "ident"], textSize: 11, textOffset: [0, 1.2], textAnchor: "top",
+            textField: ["get", "ident"], textFont: ["NotoSans"], textSize: 11, textOffset: [0, 1.2], textAnchor: "top",
             textColor: color.text, textHaloColor: color.bg, textHaloWidth: 1,
             textOptional: true,
           }} />

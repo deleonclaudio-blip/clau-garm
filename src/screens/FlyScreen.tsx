@@ -11,6 +11,7 @@ import { color, space, type } from "../ui/theme";
 import { trueToMagnetic } from "../ui/units";
 import { useAirspaceAlert } from "../ui/useAirspaceAlert";
 import { useBasemap } from "../ui/useBasemap";
+import { useGlyphs } from "../ui/useGlyphs";
 import { useMagVar } from "../ui/useMagVar";
 import { useOwnship } from "../ui/useOwnship";
 
@@ -28,6 +29,7 @@ export function FlyScreen({ planId, pack = null }: Props) {
   const hits = useAirspaceAlert(pack, ownship);
   const magVar = useMagVar(pack, ownship);
   const basemap = useBasemap();
+  const glyphsUrl = useGlyphs();
 
   useEffect(() => {
     let alive = true;
@@ -49,6 +51,7 @@ export function FlyScreen({ planId, pack = null }: Props) {
         ownship={ownship}
         northUp={northUp}
         basemapUri={basemap.uri}
+        glyphsUrl={glyphsUrl}
       />
       <Hud
         ownship={ownship}

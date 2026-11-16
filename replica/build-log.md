@@ -153,3 +153,19 @@ causes, all fixed:
 `useBasemap` + an "Import base map" button copy the generated PMTiles into app
 storage once (offline thereafter); the neutral fallback stays until then. Confirmed
 MapLibre Native 11.12.1 (Android) / 6.17.1 (iOS) support pmtiles://. App type-checks.
+
+## 2026-11-16 · Offline text labels (glyphs)
+
+Basemap loaded on device but place labels were missing: the style used a font
+server (demotiles) that an EFB cannot rely on and that lacked the Noto font.
+Fixed with bundled offline glyphs:
+- `make glyphs` downloads Noto Sans ranges (0-255, 256-511, 8192-8447 — ASCII,
+  Spanish accents, punctuation) into assets/glyphs/NotoSans/ (no-space folder so
+  the file:// template needs no encoding).
+- `useGlyphs` lays them out under the app document directory and returns a
+  file:// glyphs template; AeroMap uses it and sets text-font "NotoSans" on the
+  basemap places and the aero labels alike. Falls back to the demo server only
+  when the local set is unavailable.
+
+Whole app type-checks; data chain green. Labels now render offline (device
+check pending).

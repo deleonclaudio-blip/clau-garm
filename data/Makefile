@@ -43,3 +43,21 @@ basemap: basemap-check
 	  --bbox="$(UY_BBOX)" --minzoom=$(UY_MINZOOM) --maxzoom=$(UY_MAXZOOM)
 	pmtiles show "$(BASEMAP_OUT)" | head -20
 	@echo "Wrote $(BASEMAP_OUT). Bundle it with the app or download it on device, then set basemapAvailable=true."
+
+# --- Offline glyphs (text labels without a font server) -----------------------
+# Downloads the Noto Sans ranges the app needs into assets/glyphs/NotoSans/.
+# Stored under a no-space folder so the file:// glyph template has no encoding
+# ambiguity; the app sets text-font "NotoSans" to match.
+GLYPH_FONT ?= Noto%20Sans%20Regular
+GLYPH_RANGES ?= 0-255 256-511 8192-8447
+GLYPH_SRC ?= https://raw.githubusercontent.com/protomaps/basemaps-assets/main/fonts
+GLYPH_OUT ?= ../assets/glyphs/NotoSans
+
+.PHONY: glyphs
+glyphs:
+	mkdir -p "$(GLYPH_OUT)"
+	@for r in $(GLYPH_RANGES); do \
+	  echo "fetch $$r.pbf"; \
+	  curl -fsSL -o "$(GLYPH_OUT)/$$r.pbf" "$(GLYPH_SRC)/$(GLYPH_FONT)/$$r.pbf"; \
+	done
+	@echo "Wrote glyphs to $(GLYPH_OUT)/"
