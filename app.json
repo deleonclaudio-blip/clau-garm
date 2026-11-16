@@ -5,7 +5,26 @@
     "version": "0.0.1",
     "orientation": "landscape",
     "userInterfaceStyle": "dark",
-    "android": { "package": "uy.clau.garm" },
-    "platforms": ["android", "ios"]
+    "newArchEnabled": false,
+    "android": {
+      "package": "uy.clau.garm",
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "clau-garm uses your location to show own-ship on the moving map."
+      }
+    },
+    "platforms": ["android", "ios"],
+    "plugins": [
+      "@maplibre/maplibre-react-native",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "clau-garm uses your location to show own-ship on the moving map."
+        }
+      ]
+    ]
   }
 }
