@@ -7,8 +7,9 @@ import { AeroMap } from "../ui/AeroMap";
 import { AirspaceBanner } from "../ui/AirspaceBanner";
 import { Hud } from "../ui/Hud";
 import { color, space, type } from "../ui/theme";
-import { trueToMagnetic, UY_DEFAULT_MAGVAR } from "../ui/units";
+import { trueToMagnetic } from "../ui/units";
 import { useAirspaceAlert } from "../ui/useAirspaceAlert";
+import { useMagVar } from "../ui/useMagVar";
 import { useOwnship } from "../ui/useOwnship";
 
 interface Props {
@@ -25,6 +26,7 @@ export function FlyScreen({ planId, pack = null, basemapAvailable = false }: Pro
   const [northUp, setNorthUp] = useState(true);
   const { ownship, permission } = useOwnship(true);
   const hits = useAirspaceAlert(pack, ownship);
+  const magVar = useMagVar(pack, ownship);
 
   useEffect(() => {
     let alive = true;
@@ -36,7 +38,7 @@ export function FlyScreen({ planId, pack = null, basemapAvailable = false }: Pro
   }, [planId]);
 
   const magHeading = ownship?.trackDeg != null
-    ? trueToMagnetic(ownship.trackDeg, UY_DEFAULT_MAGVAR)
+    ? trueToMagnetic(ownship.trackDeg, magVar)
     : null;
 
   return (

@@ -203,19 +203,36 @@ def main():
                                       [r["thr2_lon"], r["thr2_lat"]]]}}
         for r in data["runways"]
     ]
+    # Paved vs unpaved: an aerodrome is "paved" if any runway surface is a hard
+    # surface (concrete/asphalt/bituminous), else grass/unpaved.
+    PAVED = ("HORMIG", "ASF", "CONCRET", "BITUM")
+    paved_icaos = set()
+    for r in data["runways"]:
+        s = (r.get("surface") or "").upper()
+        if any(k in s for k in PAVED):
+            paved_icaos.add(r["icao"])
+
+    def ad_sym(icao):
+        return "ad_paved" if icao in paved_icaos else "ad_unpaved"
+
+    def navaid_sym(t):
+        return "ndb" if "NDB" in (t or "").upper() else "vor"
+
     point_features = (
         [{"type": "Feature",
           "properties": {"layer_type": "aerodrome", "ident": a["icao"], "name": a["name"],
-                         "category": a["category"], "elev_ft": a["elev_ft"]},
+                         "category": a["category"], "elev_ft": a["elev_ft"],
+                         "sym": ad_sym(a["icao"])},
           "geometry": {"type": "Point", "coordinates": [a["lon"], a["lat"]]}}
          for a in data["aerodromes"]]
         + [{"type": "Feature",
             "properties": {"layer_type": "navaid", "ident": n["ident"], "name": n["name"],
-                           "freq": n["freq"]},
+                           "freq": n["freq"], "sym": navaid_sym(n.get("type"))},
             "geometry": {"type": "Point", "coordinates": [n["lon"], n["lat"]]}}
            for n in data["navaids"]]
         + [{"type": "Feature",
-            "properties": {"layer_type": "waypoint", "ident": w["ident"], "route": w["route"]},
+            "properties": {"layer_type": "waypoint", "ident": w["ident"], "route": w["route"],
+                           "sym": "wpt"},
             "geometry": {"type": "Point", "coordinates": [w["lon"], w["lat"]]}}
            for w in data["waypoints"]]
     )

@@ -122,3 +122,19 @@ Map base decided: Protomaps / OSM (PMTiles, offline) — MapLibre component next
 Whole app type-checks; the data chain (build + validate + spatial test) stays
 green. **Not run here** — MapLibre/expo-location/PMTiles need a device:
 `expo run:android` on a tablet, after `make basemap`.
+
+## 2026-11-16 · OACI sprites + dynamic magnetic variation
+
+- **Sprites** (`data/make_sprites.py`): ownship, ad_paved, ad_unpaved, vor, ndb,
+  wpt, generated as @1x/@2x/@3x PNGs plus packed sprite.png/json sheets. The map
+  registers them via the Images component, so iconImage names resolve with no
+  missing-resource errors. Point features now carry a `sym` (paved vs grass
+  aerodrome, VOR vs NDB, waypoint); ownship uses the aircraft icon rotated to
+  GPS track. `make sprites` regenerates them.
+- **Dynamic mag var** (`pack.nearestAerodrome` + `useMagVar`): HUD magnetic
+  track now uses the nearest aerodrome's mag_var via the R-Tree, falling back to
+  -12° if none/unset. Verified on the real DB: Carrasco→-12, Rivera→-14,
+  Salto→-12.
+
+Whole app type-checks; data chain + spatial test green. Ready for the device
+build: `cd data && make basemap`, then `npx expo prebuild` and `expo run:android`.

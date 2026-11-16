@@ -43,7 +43,8 @@ non-commercial build it is usable now.
    This is the main open decision for the map to look like anything.
 2. **An Android device or emulator** to run `expo run:android`, see the map and
    capture screenshots. Cannot be done in CI.
-3. **Glyphs/sprites** for the MapLibre labels/icons (the `glyphs` and `sprite`
-   entries point to placeholders). A sprite generator for ICAO symbols is TODO.
+3. **Glyphs** for MapLibre text labels. The `glyphs` URL points at a public
+   demo font server; for fully offline labels, self-host a glyph PBF set and
+   point `glyphs` at it. (ICAO icon sprites are done — `make sprites`.)
 4. **Weather source** (METAR/TAF) for the briefing — a separate decision.
 5. **Commercial licence** from DINACIA (and/or openAIP) before selling.

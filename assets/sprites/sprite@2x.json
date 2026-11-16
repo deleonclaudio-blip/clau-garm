@@ -1,0 +1,44 @@
+{
+  "ownship": {
+    "x": 0,
+    "y": 0,
+    "width": 48,
+    "height": 48,
+    "pixelRatio": 2
+  },
+  "ad_paved": {
+    "x": 48,
+    "y": 0,
+    "width": 48,
+    "height": 48,
+    "pixelRatio": 2
+  },
+  "ad_unpaved": {
+    "x": 96,
+    "y": 0,
+    "width": 48,
+    "height": 48,
+    "pixelRatio": 2
+  },
+  "vor": {
+    "x": 144,
+    "y": 0,
+    "width": 48,
+    "height": 48,
+    "pixelRatio": 2
+  },
+  "ndb": {
+    "x": 192,
+    "y": 0,
+    "width": 48,
+    "height": 48,
+    "pixelRatio": 2
+  },
+  "wpt": {
+    "x": 240,
+    "y": 0,
+    "width": 48,
+    "height": 48,
+    "pixelRatio": 2
+  }
+}

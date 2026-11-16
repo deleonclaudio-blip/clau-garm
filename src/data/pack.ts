@@ -51,6 +51,37 @@ export class RegionPack {
     return rows.map(rowToAirport);
   }
 
+  /** Nearest aerodrome to a point, with its magnetic variation (signed, west
+   * negative, as published). Uses the R-Tree: expands a small bbox until it
+   * finds candidates, then picks the closest by great-circle distance. Returns
+   * null if none nearby (caller falls back to the regional default). */
+  async nearestAerodrome(
+    lat: number, lon: number,
+  ): Promise<{ icao: string; lat: number; lon: number; magVar: number | null } | null> {
+    for (const halfDeg of [0.5, 1.5, 3.0]) {
+      const rows = await this.db.getAllAsync<any>(
+        `SELECT a.icao, a.lat, a.lon, a.mag_var
+           FROM spatial_index i
+           JOIN spatial_lookup s ON s.rtree_id = i.id
+           JOIN aerodromes a ON a.icao = s.entity_id
+          WHERE s.entity_type = 'aerodrome'
+            AND i.min_lat BETWEEN ? AND ? AND i.min_lon BETWEEN ? AND ?`,
+        lat - halfDeg, lat + halfDeg, lon - halfDeg, lon + halfDeg,
+      );
+      if (rows.length === 0) continue;
+      let best = rows[0];
+      let bestD = Infinity;
+      for (const r of rows) {
+        const dLat = r.lat - lat;
+        const dLon = (r.lon - lon) * Math.cos((lat * Math.PI) / 180);
+        const d = dLat * dLat + dLon * dLon; // squared, monotonic — fine for nearest
+        if (d < bestD) { bestD = d; best = r; }
+      }
+      return { icao: best.icao, lat: best.lat, lon: best.lon, magVar: best.mag_var };
+    }
+    return null;
+  }
+
   /** Fixes within a bounding box, via the R-Tree spatial index. */
   async near(
     minLat: number, maxLat: number, minLon: number, maxLon: number,

@@ -9,7 +9,7 @@
     "aip-runways": { "type": "geojson", "data": "dist/runways.geojson" },
     "aip-points": { "type": "geojson", "data": "dist/points_nav.geojson" }
   },
-  "sprite": "dist/sprites/aip",
+  "sprite": "assets/sprites/sprite",
   "glyphs": "{fontstack}/{range}.pbf",
   "layers": [
     { "id": "bg", "type": "background", "paint": { "background-color": "#0b0f14" } },
