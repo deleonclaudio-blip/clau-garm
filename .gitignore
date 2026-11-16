@@ -9,3 +9,6 @@ replica/screens/
 replica/reviews.csv
 dist-test/
 dist/
+
+# Large base map (generate with: cd data && make basemap)
+assets/*.pmtiles

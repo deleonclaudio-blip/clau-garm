@@ -4,8 +4,15 @@
 
 export interface AirspaceLayer {
   airspaceClass: string | null;
-  lowerFt: number | null;
+  lowerFt: number | null; // converted envelope, used for the vertical filter
   upperFt: number | null;
+  // published form, for display (e.g. "600 m", "FL195", "GND")
+  lowerVal: number | null;
+  lowerUnit: string | null;
+  lowerRef: string | null;
+  upperVal: number | null;
+  upperUnit: string | null;
+  upperRef: string | null;
   schedule: string | null;
 }
 
@@ -23,6 +30,11 @@ export interface AirspaceHit {
   /** The class at the queried altitude, or null if laterally inside but
    * vertically outside every layer. */
   insideClass: string | null;
+  /** The layer the aircraft is in, and the nearest layers above / below, with
+   * their vertical limits (for the alert banner). null when none. */
+  activeLayer: AirspaceLayer | null;
+  layerAbove: AirspaceLayer | null;
+  layerBelow: AirspaceLayer | null;
   /** Classes of layers immediately above / below the queried altitude. */
   above: string[];
   below: string[];
@@ -56,19 +68,32 @@ export function pointInPolygon(lon: number, lat: number, polygon: number[][][]):
 /** Which layer contains altFt, plus the layers above and below it. */
 export function classifyAltitude(layers: AirspaceLayer[], altFt: number): {
   insideClass: string | null;
+  activeLayer: AirspaceLayer | null;
+  layerAbove: AirspaceLayer | null;
+  layerBelow: AirspaceLayer | null;
   above: string[];
   below: string[];
 } {
-  let insideClass: string | null = null;
-  const above: string[] = [];
-  const below: string[] = [];
+  let active: AirspaceLayer | null = null;
+  const aboveLayers: AirspaceLayer[] = [];
+  const belowLayers: AirspaceLayer[] = [];
   for (const l of layers) {
     if (l.lowerFt == null || l.upperFt == null) continue;
-    if (l.lowerFt <= altFt && altFt < l.upperFt) insideClass = l.airspaceClass;
-    else if (l.lowerFt > altFt) above.push(l.airspaceClass ?? "");
-    else below.push(l.airspaceClass ?? "");
+    if (l.lowerFt <= altFt && altFt < l.upperFt) active = l;
+    else if (l.lowerFt > altFt) aboveLayers.push(l);
+    else belowLayers.push(l);
   }
-  return { insideClass, above, below };
+  // nearest above = smallest lowerFt among those above; nearest below = largest upperFt
+  aboveLayers.sort((a, b) => (a.lowerFt! - b.lowerFt!));
+  belowLayers.sort((a, b) => (b.upperFt! - a.upperFt!));
+  return {
+    insideClass: active?.airspaceClass ?? null,
+    activeLayer: active,
+    layerAbove: aboveLayers[0] ?? null,
+    layerBelow: belowLayers[0] ?? null,
+    above: aboveLayers.map((l) => l.airspaceClass ?? ""),
+    below: belowLayers.map((l) => l.airspaceClass ?? ""),
+  };
 }
 
 /** Given candidate airspaces (already R-Tree pre-filtered), return the ones the
@@ -84,6 +109,7 @@ export function airspacesAtPosition(
     if (!pointInPolygon(lon, lat, a.geometry)) continue;
     const v = classifyAltitude(a.layers, altFt);
     hits.push({ name: a.name, type: a.type, insideClass: v.insideClass,
+      activeLayer: v.activeLayer, layerAbove: v.layerAbove, layerBelow: v.layerBelow,
       above: v.above, below: v.below });
   }
   return hits;

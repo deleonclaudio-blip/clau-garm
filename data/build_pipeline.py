@@ -220,14 +220,18 @@ def main():
            for w in data["waypoints"]]
     )
 
+    # GeoJSON goes to dist/ (for validation) and assets/aero/ (committed, the
+    # app bundles these three for the MapLibre overlay).
+    assets = HERE.parent / "assets" / "aero"
+    assets.mkdir(parents=True, exist_ok=True)
     for fname, feats in (("airspaces.geojson", airspace_features),
                          ("runways.geojson", runway_features),
                          ("points_nav.geojson", point_features)):
-        (OUT / fname).write_text(
-            json.dumps({"type": "FeatureCollection", "features": feats}, ensure_ascii=False),
-            encoding="utf-8")
+        payload = json.dumps({"type": "FeatureCollection", "features": feats}, ensure_ascii=False)
+        (OUT / fname).write_text(payload, encoding="utf-8")
+        (assets / fname).write_text(payload, encoding="utf-8")
 
-    print(f"Built {db.name}, airspaces.geojson, runways.geojson, points_nav.geojson in {OUT}/")
+    print(f"Built {db.name} + 3 GeoJSON in {OUT}/ and assets/aero/")
 
 
 if __name__ == "__main__":

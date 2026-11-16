@@ -87,15 +87,21 @@ export class RegionPack {
     const ids = rows.map((r) => r.id);
     const placeholders = ids.map(() => "?").join(",");
     const layerRows = await this.db.getAllAsync<any>(
-      `SELECT airspace_id, airspace_class, lower_ft, upper_ft, schedule
+      `SELECT airspace_id, airspace_class, lower_val, lower_unit, lower_ref, lower_ft,
+              upper_val, upper_unit, upper_ref, upper_ft, schedule
          FROM airspace_layers WHERE airspace_id IN (${placeholders}) ORDER BY lower_ft`,
       ...ids,
     );
     const byParent = new Map<number, AirspaceLayer[]>();
     for (const l of layerRows) {
       const list = byParent.get(l.airspace_id) ?? [];
-      list.push({ airspaceClass: l.airspace_class, lowerFt: l.lower_ft,
-        upperFt: l.upper_ft, schedule: l.schedule });
+      list.push({
+        airspaceClass: l.airspace_class,
+        lowerFt: l.lower_ft, upperFt: l.upper_ft,
+        lowerVal: l.lower_val, lowerUnit: l.lower_unit, lowerRef: l.lower_ref,
+        upperVal: l.upper_val, upperUnit: l.upper_unit, upperRef: l.upper_ref,
+        schedule: l.schedule,
+      });
       byParent.set(l.airspace_id, list);
     }
     const candidates: AirspacePolygon[] = rows.map((r) => ({

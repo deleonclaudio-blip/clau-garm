@@ -1,0 +1,34 @@
+{
+  "version": 8,
+  "name": "clau-garm base (Uruguay)",
+  "metadata": {
+    "note": "Base map only. The aeronautical overlay (airspaces, runways, points) is added in code by AeroMap from the bundled GeoJSON. 'basemap' source points at a local PMTiles file produced by `make basemap`; if it is absent, AeroMap falls back to the neutral background below so the aero layers are still testable."
+  },
+  "sources": {
+    "basemap": {
+      "type": "vector",
+      "url": "pmtiles://base_uruguay.pmtiles"
+    }
+  },
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    { "id": "bg", "type": "background", "paint": { "background-color": "#0b0f14" } },
+    {
+      "id": "water", "type": "fill", "source": "basemap", "source-layer": "water",
+      "paint": { "fill-color": "#0e2233" }
+    },
+    {
+      "id": "landcover", "type": "fill", "source": "basemap", "source-layer": "landcover",
+      "paint": { "fill-color": "#13202b", "fill-opacity": 0.5 }
+    },
+    {
+      "id": "roads", "type": "line", "source": "basemap", "source-layer": "transportation",
+      "paint": { "line-color": "#223042", "line-width": 0.6 }
+    },
+    {
+      "id": "places", "type": "symbol", "source": "basemap", "source-layer": "place",
+      "layout": { "text-field": ["get", "name"], "text-size": 11, "text-font": ["Noto Sans Regular"] },
+      "paint": { "text-color": "#5b6470", "text-halo-color": "#0b0f14", "text-halo-width": 1 }
+    }
+  ]
+}

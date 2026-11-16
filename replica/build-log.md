@@ -102,3 +102,23 @@ every airspace has a layer, TMA has 3, bbox contains geometry) — 0 failures.
 `make` now runs build + validate + spatial test. Whole app type-checks.
 
 Map base decided: Protomaps / OSM (PMTiles, offline) — MapLibre component next.
+
+## 2026-11-16 · Real MapLibre map (replaces the schematic)
+
+`AeroMap` (@maplibre/maplibre-react-native) replaces the schematic RouteView:
+- Aeronautical vector layers from the bundled GeoJSON (airspaces fill+line+label,
+  runways, points) plus the active route and an own-ship icon.
+- Base layer from `base_uruguay.pmtiles` (pmtiles://) with a clean neutral
+  fallback when the file is absent, so the aero layers are testable immediately.
+- `useOwnship` — expo-location at 1 Hz (lat/lon, GPS alt, GS, true track).
+- `Hud` — GPS altitude, ground speed, magnetic track (true − variation; default
+  UY −12°, advisory), and a north-up / track-up toggle driving the camera.
+- `useAirspaceAlert` + `AirspaceBanner` — polls getAirspacesAtPosition as the
+  aircraft moves and shows the current airspace, ICAO class, current vertical
+  band and the layers immediately above/below.
+- `make basemap` — cuts the Uruguay bbox (-58.6,-35.5,-53.0,-30.0, z0–12) from
+  the Protomaps global build into a small local PMTiles via the pmtiles CLI.
+
+Whole app type-checks; the data chain (build + validate + spatial test) stays
+green. **Not run here** — MapLibre/expo-location/PMTiles need a device:
+`expo run:android` on a tablet, after `make basemap`.
