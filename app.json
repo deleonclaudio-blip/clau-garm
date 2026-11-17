@@ -8,7 +8,10 @@
     "newArchEnabled": false,
     "android": {
       "package": "uy.clau.garm",
-      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ]
     },
     "ios": {
       "supportsTablet": true,
@@ -16,8 +19,19 @@
         "NSLocationWhenInUseUsageDescription": "clau-garm uses your location to show own-ship on the moving map."
       }
     },
-    "platforms": ["android", "ios"],
+    "platforms": [
+      "android",
+      "ios"
+    ],
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "1.9.25"
+          }
+        }
+      ],
       "@maplibre/maplibre-react-native",
       [
         "expo-location",
@@ -25,6 +39,12 @@
           "locationWhenInUsePermission": "clau-garm uses your location to show own-ship on the moving map."
         }
       ]
-    ]
+    ],
+    "owner": "claudiodeleon",
+    "extra": {
+      "eas": {
+        "projectId": "123d9278-bae5-4799-ba82-24d7acaf228b"
+      }
+    }
   }
 }
