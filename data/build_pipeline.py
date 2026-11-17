@@ -246,7 +246,7 @@ def main():
                          ("points_nav.geojson", point_features)):
         payload = json.dumps({"type": "FeatureCollection", "features": feats}, ensure_ascii=False)
         (OUT / fname).write_text(payload, encoding="utf-8")
-        (assets / fname).write_text(payload, encoding="utf-8")
+        (assets / fname.replace(".geojson", ".json")).write_text(payload, encoding="utf-8")
 
     print(f"Built {db.name} + 3 GeoJSON in {OUT}/ and assets/aero/")
 
